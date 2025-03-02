@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "319537572550",
+    "project_id": "ecommerce-cfd54",
+    "storage_bucket": "ecommerce-cfd54.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319537572550:android:e83f1b0f323cf12ce1c5c7",
+        "android_client_info": {
+          "package_name": "com.example.flutt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACtTZIfr7TXRPMU2sxC4qSgLiadSdooSI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319537572550:android:c5fc372294e55441e1c5c7",
+        "android_client_info": {
+          "package_name": "com.example.flutterahmad"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACtTZIfr7TXRPMU2sxC4qSgLiadSdooSI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319537572550:android:5675e68fc45c0f3de1c5c7",
+        "android_client_info": {
+          "package_name": "com.example.iug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACtTZIfr7TXRPMU2sxC4qSgLiadSdooSI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
