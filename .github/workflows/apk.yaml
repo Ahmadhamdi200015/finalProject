@@ -15,11 +15,14 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - run: echo "JAVA_HOME=${{ env.JAVA_HOME_17_X64 }}" >> $GITHUB_ENV
+
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.27.1'
 
       - run: flutter pub get
+      - run: flutter pub global activate gradle_wrapper
       - run: flutter build apk --release --split-per-abi --tree-shake-icons
 
       - uses: ncipollo/release-action@v1
