@@ -1,30 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:iug/core/constant/app_color.dart';
+import 'package:iug/core/constant/app_color/app_color.dart';
 
 class NotificationPage extends StatelessWidget {
   const NotificationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: const Text('Notification',style: TextStyle(color: AppColor.thirdColor),),centerTitle: true,actions: [
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 20),
-          padding:
-          const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: AppColor.primaryColor),
-          child: const Text(
-            '2 New ',
-            style: TextStyle(color: Colors.white),
-          ),
-        )
-      ],),
-      body: Container(
+    return Container(
         margin: const EdgeInsets.only( top: 20,right: 20,left: 20),
         child: ListView(
           children: [
@@ -218,7 +200,6 @@ class NotificationPage extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 }

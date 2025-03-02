@@ -20,7 +20,10 @@ class AppRoute {
   static const String aboutPage = "/AboutPage";
   static const String archivePage = "/ArchivePage";
 
+  static const String addressPage = "/AddressPage";
 
+  static const String mapAddressPage = "/MapAddressPage";
+  static const String addressView = "/AddressView";
 
 
 

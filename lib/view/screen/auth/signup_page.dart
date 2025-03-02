@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iug/controller/auth/sign_up_controller.dart';
-import 'package:iug/core/constant/app_color.dart';
+import 'package:iug/core/constant/app_color/app_color.dart';
 
 import '../../../core/function/validinput.dart';
 import '../../widget/auth/custom_button_auth.dart';
@@ -67,9 +67,20 @@ class SignupPage extends StatelessWidget {
                     hintText: ' ********',
                     obscureText: true, label:const Text('Password',style: TextStyle(color: Colors.black),),
                   ),
+                  CustomTextField(
+                    validator: (val) {
+                      return validInput(val!, 8, 40, 'password');
+                    },
+                    keyboardType: TextInputType.visiblePassword,
+                    controller: controller.textConfirmPassword,
+                    hintText: ' ********',
+                    obscureText: true, label:const Text('Password',style: TextStyle(color: Colors.black),),
+                  ),
                   CustomButtonAuth(
                     txtBtn: 'Sign Up',
-                    onPressed: () {},
+                    onPressed: () async{
+                     await controller.SignUp();
+                    },
                   ),
                 ],),
               )

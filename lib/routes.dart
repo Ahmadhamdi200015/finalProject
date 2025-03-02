@@ -1,6 +1,9 @@
 
 import 'package:get/get.dart';
 import 'package:iug/core/constant/route.dart';
+import 'package:iug/view/screen/address/address.dart';
+import 'package:iug/view/screen/address/addressview.dart';
+import 'package:iug/view/screen/address/map_address_page.dart';
 import 'package:iug/view/screen/auth/change_password_page.dart';
 import 'package:iug/view/screen/auth/forget_password_page.dart';
 import 'package:iug/view/screen/cart/cart_page.dart';
@@ -43,7 +46,10 @@ GetPage(name:AppRoute.signPage, page:()=>const SignupPage()),
   GetPage(name:AppRoute.archivePage, page:()=>const ArchivePage()),
 
 
+  GetPage(name:AppRoute.addressPage, page:()=>const AddressPage()),
 
+  GetPage(name:AppRoute.addressView, page:()=>const AddressView()),
+  GetPage(name:AppRoute.mapAddressPage, page:()=>const MapAddressPage()),
 
 
 

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:iug/core/constant/app_color.dart';
+import 'package:iug/core/constant/app_color/app_color.dart';
 
 class CusttomListCart extends StatelessWidget {
   final String image;

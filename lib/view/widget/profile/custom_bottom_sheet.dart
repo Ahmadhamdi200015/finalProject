@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../core/constant/app_color.dart';
+import '../../../core/constant/app_color/app_color.dart';
 
 class CustomBottomSheet extends StatelessWidget{
   const CustomBottomSheet({super.key});

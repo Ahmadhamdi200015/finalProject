@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iug/core/constant/app_color.dart';
+import 'package:iug/core/constant/app_color/app_color.dart';
 import 'package:iug/view/widget/public/custtombottombar.dart';
 
 import '../../../controller/home/home_screen_controller.dart';
@@ -16,6 +16,7 @@ class HomeScreen extends StatelessWidget {
     Get.put(HomeScreenController());
     return GetBuilder<HomeScreenController>(
         builder: (controller) => Scaffold(
+          backgroundColor: Colors.white,
           bottomNavigationBar:BottomAppBar(
             color:Colors.white,
             shape: const CircularNotchedRectangle(),

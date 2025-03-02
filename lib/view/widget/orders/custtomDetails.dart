@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iug/controller/profile/order_controller.dart';
 
-import '../../../core/constant/app_color.dart';
+import '../../../core/constant/app_color/app_color.dart';
 
 class CustomDetails extends GetView<OrderController> {
 

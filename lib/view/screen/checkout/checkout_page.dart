@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iug/core/constant/app_color.dart';
+import 'package:iug/core/constant/app_color/app_color.dart';
 import 'package:iug/view/widget/checkout/custtom_checkout_method.dart';
 
 import '../../../controller/checkout/check_out_controller.dart';
@@ -23,7 +23,9 @@ class CheckoutPage extends StatelessWidget {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             color: AppColor.primaryColor,
-            onPressed: () {},
+            onPressed: () {
+              controller.addOrders();
+            },
             child: const Text(
               'CheckOut',
               style: TextStyle(color: Colors.white),

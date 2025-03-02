@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iug/applink.dart';
 import 'package:iug/controller/home/home_page_controller.dart';
+import 'package:iug/data/model/itemsmodel.dart';
 
-import '../../../core/constant/app_color.dart';
+import '../../../core/constant/app_color/app_color.dart';
 
 class CustomCardItems extends GetView<HomePageController>{
-  final String imagePath;
-  final String productName;
-  final void Function()? onTap;
-  const CustomCardItems({super.key,required this.onTap,required this.imagePath,required this.productName});
+  final ItemsModel itemsModel;
+  const CustomCardItems({super.key,required this.itemsModel});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap:onTap,
+      onTap:() {
+        controller.goToItemsDetails(itemsModel);
+      },
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 5),
         child: Column(
@@ -25,8 +27,8 @@ class CustomCardItems extends GetView<HomePageController>{
                   decoration: BoxDecoration(
                       color: AppColor.secondColor,
                       borderRadius: BorderRadius.circular(10)),
-                  child: Image.asset(
-                    imagePath,
+                  child: Image.network(
+                    "${AppLink.imagesItems}/${itemsModel.itemsImage!}",
                     width: 100,
                     height: 100,
                   ),
@@ -35,7 +37,7 @@ class CustomCardItems extends GetView<HomePageController>{
             Container(
               margin: const EdgeInsets.only(top: 10),
               child:  Text(
-                productName,
+                itemsModel.itemsName!,
                 style: const TextStyle(
                     color: Colors.black, fontWeight: FontWeight.bold),
               ),

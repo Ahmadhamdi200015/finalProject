@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iug/controller/auth/forget_password_controller.dart';
-import 'package:iug/core/constant/app_color.dart';
+import 'package:iug/core/constant/app_color/app_color.dart';
 import 'package:iug/view/widget/auth/custom_button_auth.dart';
 
 class ForgetPasswordPage extends StatelessWidget {

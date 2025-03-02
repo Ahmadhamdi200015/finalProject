@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iug/controller/auth/login_controller.dart';
-import 'package:iug/core/constant/app_color.dart';
+import 'package:iug/core/constant/app_color/app_color.dart';
 import 'package:iug/core/function/validinput.dart';
 import 'package:iug/view/widget/auth/custom_button_auth.dart';
 
@@ -92,7 +92,7 @@ class LoginPage extends StatelessWidget {
                     CustomButtonAuth(
                       txtBtn: 'Sign In',
                       onPressed: () {
-                        controller.goToHomePage();
+                        controller.Login();
                       },
                     ),
                   ],

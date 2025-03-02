@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iug/core/constant/app_color.dart';
+import 'package:iug/core/constant/app_color/app_color.dart';
 import 'package:iug/view/widget/mycart/custtomlistcart.dart';
 import 'package:iug/view/widget/mycart/custtomnavbar.dart';
 
@@ -40,9 +40,9 @@ class CartPage extends StatelessWidget {
                       color: AppColor.primaryColor,
                       borderRadius: BorderRadius.circular(10)),
                   alignment: Alignment.center,
-                  child: const Text(
-                    "You Have 2 items in Your List",
-                    style: TextStyle(color:Colors.white),
+                  child:  Text(
+                    "You Have ${controller.cartList.length} items in Your List",
+                    style: const TextStyle(color:Colors.white),
                   ),
                 ),
                 const SizedBox(
@@ -52,14 +52,14 @@ class CartPage extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(horizontal: 20),
                   child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: 1,
+                    itemCount: controller.cartList.length,
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) {
                       return CusttomListCart(
                           image:
                           "assets/images/phone.png",
-                          title: const Text(
-                              "iphone 12 pro max"),
+                          title: Text(
+                              "${controller.cartList[index]['product_id']}"),
                           subtitle:
                           "350\$",
                           textCount:

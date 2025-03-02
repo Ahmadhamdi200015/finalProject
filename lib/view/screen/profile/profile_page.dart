@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iug/controller/profile/profile_controller.dart';
-import 'package:iug/core/constant/app_color.dart';
+import 'package:iug/core/constant/app_color/app_color.dart';
 import 'package:iug/view/widget/profile/custom_bottom_sheet.dart';
 
 import '../../widget/profile/custom_list_tile.dart';
@@ -14,17 +14,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ProfileController controller=Get.put(ProfileController());
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        title: const Text(
-          'Profile',
-          style: TextStyle(color: AppColor.thirdColor),
-        ),
-      ),
-      body: Container(
+    return Container(
         margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         child: SingleChildScrollView(
           child: Column(
@@ -121,6 +111,23 @@ class ProfilePage extends StatelessWidget {
                 color: Colors.grey.shade300,
               ),
               CustomListTile(
+                onTap: (){
+                  controller.goToPasswordPage();
+                },
+                textTitle: 'Change Password',
+                leading: const Icon(
+                  Icons.change_circle_outlined,
+                  color: AppColor.primaryColor,
+                ),
+                trailing: const Icon(
+                  Icons.arrow_forward_ios_outlined,
+                  color: AppColor.primaryColor,
+                ),
+              ),
+              Divider(
+                color: Colors.grey.shade300,
+              ),
+              CustomListTile(
                 textTitle: 'LogOut',
                 leading: const Icon(
                   Icons.logout_outlined,
@@ -132,14 +139,13 @@ class ProfilePage extends StatelessWidget {
                 ),
                 onTap: () {
                   Get.bottomSheet(
-                      CustomBottomSheet()
+                      const CustomBottomSheet()
                   );
                 },
               ),
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 }

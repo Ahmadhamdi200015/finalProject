@@ -1,9 +1,37 @@
+import 'dart:io';
+
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:iug/routes.dart';
 import 'package:iug/view/screen/auth/login_page.dart';
 
-void main() {
+import 'binding/initialbinding.dart';
+import 'core/function/fcmconfig.dart';
+import 'core/services/service.dart';
+import 'core/stripe_payment/stripe_key.dart';
+import 'firebase_options.dart';
+
+class MyHttpOverrides extends HttpOverrides {
+@override
+HttpClient createHttpClient(SecurityContext? context) {
+  final client = super.createHttpClient(context);
+  client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+  return client;
+}
+}
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey=StripeKey.stripePublishableKey;
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  RequestPermissoinNotification();
+  await InitialService();
+  HttpOverrides.global = MyHttpOverrides();
   runApp(const MyApp());
 }
 
@@ -20,6 +48,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      initialBinding: InitialBindings(),
       getPages: routes,
     );
   }

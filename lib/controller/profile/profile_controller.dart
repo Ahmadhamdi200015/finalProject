@@ -9,6 +9,10 @@ class ProfileController extends GetxController{
     Get.toNamed(AppRoute.aboutPage);
   }
 
+  goToPasswordPage(){
+    Get.toNamed(AppRoute.changePasswordPage);
+  }
+
   goToArchivePage(){
     Get.toNamed(AppRoute.archivePage);
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/constant/app_color.dart';
+import '../../../core/constant/app_color/app_color.dart';
 
 class CusttomCheckoutMethod extends StatelessWidget {
   final String txtMethod;

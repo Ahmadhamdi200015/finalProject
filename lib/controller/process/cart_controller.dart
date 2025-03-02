@@ -4,16 +4,19 @@ import 'package:iug/core/function/staterequest.dart';
 
 import '../../core/constant/route.dart';
 import '../../core/function/handlingdata.dart';
+import '../../core/services/service.dart';
+import '../../data/datasource/remote/cart/cart_data.dart';
 
 class CartController extends GetxController{
-  // CartData cartData = CartData(Get.find());
+  CartData cartData = CartData(Get.find());
 
   StatusRequest statusRequest = StatusRequest.lodaing;
-  // MyService myService = Get.find();
+  MyService myService = Get.find();
   int totalPriceItems = 0;
   int discountCoupon=0;
   String? nameCoupon;
   String? couponId;
+  List cartList=[];
 
   var totalCount = 0;
   // late Itemsmodel itemsmodel;
@@ -25,6 +28,7 @@ class CartController extends GetxController{
 
   @override
   void onInit() {
+    fetchData();
     coupon = TextEditingController();
     // getCart();
   }
@@ -34,6 +38,12 @@ class CartController extends GetxController{
     print(discountCoupon);
     var total=totalPriceItems - totalPriceItems * discountCoupon! / 100;
     return total+10;
+  }
+
+  fetchData()async{
+    var response=await cartData.viewCart(2,2);
+    cartList.addAll(response);
+    print(response);
   }
 
 
