@@ -28,7 +28,7 @@ class CustomCardItems extends GetView<HomePageController>{
                       color: AppColor.secondColor,
                       borderRadius: BorderRadius.circular(10)),
                   child: Image.network(
-                    "${AppLink.imagesItems}/${itemsModel.itemsImage!}",
+                    "${AppLink.imagesItems}${itemsModel.itemsImage!}",
                     width: 100,
                     height: 100,
                   ),
