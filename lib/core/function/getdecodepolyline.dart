@@ -25,7 +25,7 @@ Future getPolyLine(lat, long, destLat, destLong) async {
     }
   }
   Polyline polyline = Polyline(
-      polylineId: const PolylineId("delivery"),
+      polylineId: const PolylineId("deliverys"),
       color: AppColor.primaryColor,
       width: 5,
       points: polylineCoordinates);
