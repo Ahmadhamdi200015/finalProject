@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
+import 'package:iug/controller/local/local_controller.dart';
 import 'package:iug/routes.dart';
 import 'package:iug/view/screen/auth/login_page.dart';
 
@@ -29,6 +30,7 @@ void main() async{
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  getRequestPermission();
   RequestPermissoinNotification();
   await InitialService();
   HttpOverrides.global = MyHttpOverrides();
@@ -41,6 +43,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    LocalController controller = Get.put(LocalController());
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',

@@ -1,4 +1,6 @@
 class AppRoute {
+  static const String onBoarding = "/Onboarding";
+
   static const String login = "/LoginPage";
   static const String signPage = "/SignupPage";
   static const String forgetPasswordPage = "/ForgetPage";
@@ -17,6 +19,8 @@ class AppRoute {
   static const String profilePage = "/ProfilePage";
   static const String notificationPage = "/NotificationPage";
   static const String orderPage = "/OrderPage";
+  static const String orderDetails = "/DetailsOrder";
+
   static const String aboutPage = "/AboutPage";
   static const String archivePage = "/ArchivePage";
 

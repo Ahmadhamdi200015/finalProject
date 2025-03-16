@@ -1,19 +1,33 @@
 import 'package:get/get.dart';
 import 'package:iug/core/constant/route.dart';
+import 'package:iug/core/services/service.dart';
 
-class ProfileController extends GetxController{
-  goToOrderPage(){
-    Get.toNamed(AppRoute.orderPage);
+class ProfileController extends GetxController {
+  MyService myService = Get.find();
+  String userName='';
+
+  String getName() {
+    return userName = myService.sharedPrefrences.getString('userName')!;
   }
-  goToAboutPage(){
+
+
+  goToAboutPage() {
     Get.toNamed(AppRoute.aboutPage);
   }
 
-  goToPasswordPage(){
+  goToPasswordPage() {
     Get.toNamed(AppRoute.changePasswordPage);
   }
 
-  goToArchivePage(){
+  goToArchivePage() {
     Get.toNamed(AppRoute.archivePage);
+  }
+
+  goToAddressPage() {
+    Get.toNamed(AppRoute.addressView);
+  }
+  logOut()async{
+    await myService.sharedPrefrences.clear();
+    Get.offAllNamed(AppRoute.login);
   }
 }

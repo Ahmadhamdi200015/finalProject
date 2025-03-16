@@ -19,7 +19,7 @@ class MapAddressController extends GetxController {
 
   goToContinueAdd() {
     Get.toNamed(AppRoute.addressPage,
-        arguments: {"lat": lat.toString(), "long": long.toString()});
+        arguments: {"lat": lat, "long": long});
   }
 
   addMarker(LatLng latLang) {
@@ -44,4 +44,5 @@ class MapAddressController extends GetxController {
     getCurrentLocation();
     super.onInit();
   }
+
 }

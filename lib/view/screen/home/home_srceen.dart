@@ -16,6 +16,20 @@ class HomeScreen extends StatelessWidget {
     Get.put(HomeScreenController());
     return GetBuilder<HomeScreenController>(
         builder: (controller) => Scaffold(
+
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: AppColor.primaryColor,
+            child: const Icon(
+              Icons.shopping_basket_outlined,
+              color: AppColor.secondColor,
+            ),
+            onPressed: () {
+              controller.goToCart();
+              // Get.toNamed(AppRoute.CartPage);
+            },
+          ),
+          floatingActionButtonLocation:
+          FloatingActionButtonLocation.centerDocked,
           backgroundColor: Colors.white,
           bottomNavigationBar:BottomAppBar(
             color:Colors.white,
@@ -52,7 +66,7 @@ class HomeScreen extends StatelessWidget {
                         controller.changePage(2);
                       },
                       active: controller.currentpage == 2 ? true : false,
-                      iconBottom: Icons.settings_outlined,
+                      iconBottom: Icons.local_offer_sharp,
                     ),
                     CusttomBottomBar(
                       textBottom: controller.titlebottombar[3],

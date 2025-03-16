@@ -16,11 +16,18 @@ class ProductsData {
     );
   }
 
+
   Future<dynamic> fetchProducts(int categoriesId) async {
 
-    var response = await crud.dataGet(AppLink.productsView, {
-      'categoriesId':categoriesId,
-    });
+    var response = await crud.dataGet(AppLink.productsCond(categoriesId),{});
+    return response.fold(
+            (l) => l,  // Handle the left side of the result (typically an error)
+            (r) => r   // Handle the right side of the result (typically the data)
+    );
+  }
+  Future<dynamic> fetchProductsDiscount() async {
+
+    var response = await crud.dataGet(AppLink.productsDis,{});
     return response.fold(
             (l) => l,  // Handle the left side of the result (typically an error)
             (r) => r   // Handle the right side of the result (typically the data)

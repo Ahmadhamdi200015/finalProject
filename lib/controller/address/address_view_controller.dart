@@ -10,9 +10,9 @@ import '../../data/model/addressmodel.dart';
 abstract class AddressViewController extends GetxController {
   goToAddAddress();
 
-getAddress();
+  getAddress();
 
-removeAddress(String addressId);
+  removeAddress(int addressId);
 }
 
 class AddressViewControllerImp extends AddressViewController {
@@ -39,10 +39,8 @@ class AddressViewControllerImp extends AddressViewController {
     data.clear();
     statusRequest = StatusRequest.lodaing;
     update();
-    var response = await addressData.getAddress(
-      "${myService.sharedPrefrences.getString("userid")}",
-    );
-    List responseList = response['data'];
+    var response = await addressData.getAddress();
+    List responseList = response;
     if (response is List) {
       data.addAll(responseList.map((e) => MyAddressModel.fromJson(e)));
     }
@@ -53,8 +51,8 @@ class AddressViewControllerImp extends AddressViewController {
 
   @override
   removeAddress(addressId) async {
-    var response = await addressData.removeAddress(addressId.toString());
-    data.removeWhere((e) => e.AddressId.toString() == addressId.toString());
+    var response = await addressData.removeAddress(addressId);
+    data.removeWhere((e) => e.AddressId == addressId);
     update();
   }
 }

@@ -45,7 +45,7 @@ class MapAddressPage extends StatelessWidget {
                           child: MaterialButton(
                             padding: const EdgeInsets.symmetric(vertical: 15),
                             minWidth: 300,
-                            color: AppColor.fourthColor,
+                            color: AppColor.primaryColor,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10)),
                             onPressed: () {
@@ -53,7 +53,7 @@ class MapAddressPage extends StatelessWidget {
                             },
                             child: const Text(
                               "Continue",
-                              style: TextStyle(color: AppColor.primaryColor),
+                              style: TextStyle(color: AppColor.secondColor),
                             ),
                           ))
                     ],

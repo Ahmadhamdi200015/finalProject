@@ -1,9 +1,9 @@
 class ImageAsset {
   static const String rootlottie = "assets/lottie";
   static const String rootImages = "assets/images";
-  static const String onBoardingOne = "$rootImages/one.PNG";
-  static const String onBoardingTow = "$rootImages/logo.png";
-  static const String onBoardingThree = "$rootImages/three.PNG";
+  static const String onBoardingOne = "$rootImages/store.jpg";
+  static const String onBoardingTow = "$rootImages/review.jpg";
+  static const String onBoardingThree = "$rootImages/delivery.jpg";
   static const String macbook = "$rootImages/macbook.png";
 
   static const String logo = "$rootImages/logo.png";

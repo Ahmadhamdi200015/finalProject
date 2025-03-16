@@ -8,36 +8,38 @@ class AppLink{
   static const String checkEmail="$server/api/email/verify";
 
   static const String catView="$server/api/categories";
+  static String catViewId(int id)=>"$server//categories/$id";
   static const String productsView="$server/api/products";
+  static String productsCond(int catId)=>"$server/api/categories/$catId/products";
+  static const String productsDis="$server/api/products/discounted";
 
 //  ==========================Image=================================
-  static const String image="$server/GLAREGROUPAPI/upload/categories";
   static const String imagesItems="$server/storage/";
 
 //  ==========================Favorite=================================
 
   static const String addFav="$server/api/favorites";
-  static const String removeFav="$server/api/favorites";
+  static String removeFav(int id)=>"$server/api/favorites/$id";
   static const String favView="$server/api/favorites";
-  static const String favDelete="$server/api/favorites";
 //=============================Cart========================================
 
-  static const String cartDelete="$server/api/cart";
+  static  String cartDelete(int id)=>"$server/api/cart/$id";
+  static  String cartUpdate(int id)=>"$server/api/cart/$id";
   static const String cartAdd="$server/api/cart";
   static const String cartView="$server/api/cart";
-  static const String cartGetCount="$server/GLAREGROUPAPI/Cart/getcountitems.php";
-  static const String cartRemove="$server/GLAREGROUPAPI/Cart/remove.php";
+
 
   //==============================Search=================================
 
 
-  static const String searchView="$server/GLAREGROUPAPI/items/search.php";
 
 //==============================Address=================================
 
-  static const String AddAdress="$server/GLAREGROUPAPI/address/add.php";
-  static const String viewAddress="$server/GLAREGROUPAPI/address/view.php";
-  static const String removeAddress="$server/GLAREGROUPAPI/address/delete.php";
+  static const String addAddress="$server/api/addresses";
+  static const String viewAddress="$server/api/addresses";
+  static  String removeAddress(int addressId)=>"$server/api/addresses/$addressId";
+  static  String updateAddress(int addressId)=>"$server/api/addresses/$addressId";
+
 
 //==============================Coupon=================================
 
@@ -45,23 +47,17 @@ class AppLink{
 
 //==============================CheckOut=================================
 
-  static const String CheckOut="$server/GLAREGROUPAPI/orders/checkout.php";
+  static const String checkOut="$server/api/checkout";
   static const String pendingOrder="$server/api/orders";
-  static const String detailsOrder="$server/api/order-details";
+  static  String detailsOrder(int orderId)=>"$server/api/orders/$orderId";
   static const String archiveOrder="$server/GLAREGROUPAPI/orders/archive.php";
-  static const String deleteOrder="$server/GLAREGROUPAPI/orders/delete.php";
-  static const String ratingOrder="$server/GLAREGROUPAPI/rating.php";
 
-
-//==============================notification=================================
-
-  static const String notificationOrder="$server/GLAREGROUPAPI/notification.php";
 
 
 //==============================Offers=================================
 
 
-  static const String offersProducts="$server/GLAREGROUPAPI/offers.php";
+  static const String offersProducts="$server/api/products/discounted";
 
 
 

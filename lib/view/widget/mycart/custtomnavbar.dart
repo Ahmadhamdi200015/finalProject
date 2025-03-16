@@ -9,15 +9,11 @@ import 'package:iug/core/constant/app_color/app_color.dart';
 import '../../../controller/process/cart_controller.dart';
 
 class CusttomNavBar extends GetView<CartController> {
-  final String txtPrice;
 
-  final TextEditingController? mycontroller;
   final void Function()? onPressed;
 
   const CusttomNavBar(
       {super.key,
-      required this.mycontroller,
-      required this.txtPrice,
       required this.onPressed});
 
   @override
@@ -40,63 +36,23 @@ class CusttomNavBar extends GetView<CartController> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Row(
-              children: [
-                Expanded(
-                    flex: 2,
-                    child: TextFormField(
-                      controller: mycontroller,
-                      decoration: const InputDecoration(
-                        filled: true,
-                          fillColor: AppColor.secondColor,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                              borderSide:BorderSide.none),
-                          label: Text("Coupon Code"),
-                          hintText: "Coupon Code",
-                          hintStyle: TextStyle(
-                              fontSize: 17, color: AppColor.thirdColor),
-                          isDense: true,
-                          contentPadding: EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 10)),
-                    )),
-                const SizedBox(
-                  width: 5,
-                ),
-                Expanded(
-                    flex: 1,
-                    child: MaterialButton(
-                      padding: const EdgeInsets.symmetric(vertical: 13),
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
-                      onPressed: onPressed,
-                      color: AppColor.primaryColor,
-                      child: const Text(
-                        "Apply",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ))
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
+
             Container(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Row(
+                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         "Price Products",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: AppColor.thirdColor, fontSize: 18),
                       ),
-                      Text("350\$",
-                          style: TextStyle(
+                      Text("${controller.totalPriceItems}\$",
+                          style: const TextStyle(
                               color: AppColor.primaryColor,
                               fontWeight: FontWeight.bold,
                               fontSize: 17))
@@ -123,7 +79,7 @@ class CusttomNavBar extends GetView<CartController> {
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Shiping",
+                      Text("Shipping",
                           style: TextStyle(
                               color: AppColor.thirdColor,
                               fontWeight: FontWeight.bold, fontSize: 18)),
@@ -149,7 +105,7 @@ class CusttomNavBar extends GetView<CartController> {
                       const Text("TotalPrice",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18)),
-                      Text("$txtPrice\$",
+                      Text("${controller.totalPriceItems}\$",
                           style: const TextStyle(
                               color: AppColor.primaryColor,
                               fontWeight: FontWeight.bold,

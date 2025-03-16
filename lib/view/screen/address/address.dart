@@ -14,9 +14,9 @@ class AddressPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(AddressController());
+    AddressController addressController=Get.put(AddressController());
     return Scaffold(
-      backgroundColor: AppColor.secondColor,
+      appBar: AppBar(centerTitle: true,title: const Text('Add Address'),),
       body: GetBuilder<AddressController>(
         builder: (controller) => HandlingDataView(
             statusRequest: controller.statusRequest,
@@ -24,7 +24,6 @@ class AddressPage extends StatelessWidget {
                 margin: const EdgeInsets.all(10),
                 child: ListView(
                   children: [
-                    const AppBarAddress(titleapp: "Add Address",),
                     CusttomFormAddress(
                       mycontroller: controller.city,
                       hintText: "Enter your City",
@@ -36,13 +35,13 @@ class AddressPage extends StatelessWidget {
                       labelText: "Street",
                     ),
                     CusttomFormAddress(
-                      mycontroller: controller.name,
+                      mycontroller: controller.label,
                       hintText: "Enter your Name",
                       labelText: "Title",
                     ),
                     CusttomButtonAddress(
                         onPressed: () {
-                          // controller.AddAddress();
+                          controller.addAddress();
                         }, child: const Text("Add To Address"))
                   ],
                 ))),

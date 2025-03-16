@@ -13,6 +13,7 @@ class LoginController extends GetxController {
   GlobalKey<FormState> formStateLogin=GlobalKey();
   StatusRequest statusRequest=StatusRequest.none;
   LoginData loginData=LoginData(Get.find());
+  List user=[];
   MyService myService=Get.find();
   String? token;
 
@@ -30,7 +31,12 @@ class LoginController extends GetxController {
 
         if (response is Map && response.containsKey('token')) {
           print('Login success: ${response['token']}');
-          // myService.sharedPrefrences.setString('token', response['token']);
+
+
+          myService.sharedPrefrences.setString('userName', response['user']['name']);
+          myService.sharedPrefrences.setString('userId', response['user']['id'].toString());
+          myService.sharedPrefrences.setString('userEmail', response['user']['email']);
+
           Get.snackbar('Success', 'Login Successful');
           Get.offAllNamed(AppRoute.homeScreen);
         } else {

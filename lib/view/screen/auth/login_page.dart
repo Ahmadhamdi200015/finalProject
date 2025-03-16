@@ -76,19 +76,7 @@ class LoginPage extends StatelessWidget {
                         style: TextStyle(color: Colors.black),
                       ),
                     ),
-                    InkWell(
-                      onTap: () {
-                        controller.goToForgetPage();
-                      },
-                      child: Container(
-                        alignment: Alignment.centerRight,
-                        child: const Text(
-                          'Forget Password ?',
-                          style: TextStyle(
-                              color: AppColor.primaryColor, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
+
                     CustomButtonAuth(
                       txtBtn: 'Sign In',
                       onPressed: () {
@@ -122,30 +110,8 @@ class LoginPage extends StatelessWidget {
                   ],
                 ),
               ),
-              Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Image.asset(
-                      'assets/images/facebook.png',
-                      width: MediaQuery.sizeOf(context).width / 10,
-                      height: MediaQuery.sizeOf(context).height / 10,
-                    ),
-                    Image.asset(
-                      'assets/images/googl.png',
-                      width: MediaQuery.sizeOf(context).width / 10,
-                      height: MediaQuery.sizeOf(context).height / 10,
-                    ),
-                    Image.asset(
-                      'assets/images/twitter.png',
-                      width: MediaQuery.sizeOf(context).width / 10,
-                      height: MediaQuery.sizeOf(context).height / 10,
-                    ),
-                  ],
-                ),
-              ),
               const SizedBox(
-                height: 10,
+                height: 20,
               ),
               InkWell(
                 onTap: () {

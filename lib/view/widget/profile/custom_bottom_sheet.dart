@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iug/controller/profile/profile_controller.dart';
 
 import '../../../core/constant/app_color/app_color.dart';
 
@@ -8,6 +9,7 @@ class CustomBottomSheet extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    ProfileController controller=Get.put(ProfileController());
     return Container(
       height: MediaQuery.sizeOf(context).height/4,
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
@@ -66,7 +68,7 @@ class CustomBottomSheet extends StatelessWidget{
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
                 onPressed: () {
-                  Get.back();
+                  controller.logOut();
 
                 },
                 child: const Text(

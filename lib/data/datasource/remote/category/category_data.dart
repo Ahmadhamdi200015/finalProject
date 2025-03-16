@@ -15,4 +15,13 @@ class CategoryData {
             (r) => r   // Handle the right side of the result (typically the data)
     );
   }
+
+  Future<dynamic> getCatId(int id) async {
+
+    var response = await crud.dataGet(AppLink.catViewId(id), {});
+    return response.fold(
+            (l) => l,  // Handle the left side of the result (typically an error)
+            (r) => r   // Handle the right side of the result (typically the data)
+    );
+  }
 }

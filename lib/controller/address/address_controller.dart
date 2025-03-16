@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 
 import 'package:get/get.dart';
@@ -14,11 +16,11 @@ import 'address_view_controller.dart';
 class AddressController extends GetxController {
   TextEditingController? city;
   TextEditingController? street;
-  TextEditingController? name;
+  TextEditingController? label;
   MyService myService = Get.find();
 
-  String? lat;
-  String? long;
+  double? lat;
+  double? long;
 
   List<MyAddressModel> data = [];
   //
@@ -30,20 +32,18 @@ class AddressController extends GetxController {
     update();
     try {
       var response = await addressData.addAddress(
-        "${myService.sharedPrefrences.getString("userid")}",
-        name!.text,
         city!.text,
         street!.text,
+        label!.text,
         lat!,
-        long!,
+        long! ,
       );
-        AddressViewControllerImp c = Get.find();
-        c.getAddress();
-        Get.toNamed(AppRoute.homeScreen);
+        Get.offAllNamed(AppRoute.homeScreen);
 
     } catch (e) {
       print("============================$e");
       statusRequest = StatusRequest.serverfailure;
+      update();
     }
     statusRequest=StatusRequest.none;
     update();
@@ -53,7 +53,7 @@ class AddressController extends GetxController {
   void onInit() {
     city = TextEditingController();
     street = TextEditingController();
-    name = TextEditingController();
+    label = TextEditingController();
     lat = Get.arguments['lat'];
     long = Get.arguments['long'];
     super.onInit();

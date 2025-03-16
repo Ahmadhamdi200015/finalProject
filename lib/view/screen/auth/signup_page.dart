@@ -108,42 +108,8 @@ class SignupPage extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Image.asset(
-                      'assets/images/facebook.png',
-                      width: MediaQuery
-                          .sizeOf(context)
-                          .width / 10,
-                      height: MediaQuery
-                          .sizeOf(context)
-                          .height / 10,
-                    ),
-                    Image.asset(
-                      'assets/images/googl.png',
-                      width: MediaQuery
-                          .sizeOf(context)
-                          .width / 10,
-                      height: MediaQuery
-                          .sizeOf(context)
-                          .height / 10,
-                    ),
-                    Image.asset(
-                      'assets/images/twitter.png',
-                      width: MediaQuery
-                          .sizeOf(context)
-                          .width / 10,
-                      height: MediaQuery
-                          .sizeOf(context)
-                          .height / 10,
-                    ),
-                  ],
-                ),
-              ),
               const SizedBox(
-                height: 10,
+                height: 20,
               ),
               InkWell(
                 onTap: () {

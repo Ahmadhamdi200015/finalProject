@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -58,7 +59,8 @@ class ItemsDetailsPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20)),
               color: AppColor.primaryColor,
               onPressed: () {
-                controller.addItems(controller.itemsModel);
+                controller.addItemsToCart(controller.itemsModel);
+                print(controller.itemsModel.itemsId);
               },
               child: const Row(
                 children: [
@@ -108,19 +110,26 @@ class ItemsDetailsPage extends StatelessWidget {
                         style:
                             TextStyle(color: AppColor.thirdColor, fontSize: 22),
                       ),
-                      const CircleAvatar(
-                          backgroundColor: Colors.white,
-                          child: Icon(Icons.favorite_border_outlined))
+                      InkWell(
+                        onTap: (){
+                          // controller.addToFav(controller.itemsModel.itemsId!);
+                        },
+                        child: const CircleAvatar(
+                            backgroundColor: Colors.white,
+                            child: Icon(Icons.favorite_border_outlined)),
+                      )
                     ],
                   ),
                 ),
+
                 Container(
                   alignment: Alignment.center,
-                  child: Image.network(
-                    fit: BoxFit.fill,
-                    '${AppLink.imagesItems}/${controller.itemsModel.itemsImage}',
+                  child: CachedNetworkImage(
                     width: 250,
                     height: 250,
+                    imageUrl: "${AppLink.imagesItems}${controller.itemsModel.itemsImage}",
+                    placeholder: (context, url) => const CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
                   ),
                 ),
               ],

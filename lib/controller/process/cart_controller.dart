@@ -1,55 +1,47 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iug/core/function/staterequest.dart';
+import 'package:iug/data/model/MyCart.dart';
 
 import '../../core/constant/route.dart';
 import '../../core/function/handlingdata.dart';
 import '../../core/services/service.dart';
 import '../../data/datasource/remote/cart/cart_data.dart';
+import '../../data/model/cartmodel.dart';
 
-class CartController extends GetxController{
+class CartController extends GetxController {
   CartData cartData = CartData(Get.find());
+
+  // cartItems cartModel = cartItems();
+  MyCart myCartModel = MyCart();
 
   StatusRequest statusRequest = StatusRequest.lodaing;
   MyService myService = Get.find();
-  int totalPriceItems = 0;
-  int discountCoupon=0;
+  double totalPriceItems = 0;
+  num totalPriceItemsWithShipping = 10;
+  int discountCoupon = 0;
   String? nameCoupon;
   String? couponId;
-  List cartList=[];
+  List<Items> cartList = [];
 
   var totalCount = 0;
-  // late Itemsmodel itemsmodel;
+
   List data = [];
-  String totalcoupon = "0";
-  // MyCouponModel? myCouponModel;
 
   late TextEditingController coupon;
 
-  @override
   void onInit() {
-    fetchData();
-    coupon = TextEditingController();
-    // getCart();
+    getCart();
+    super.onInit();
   }
 
-  @override
-  getTotalPriceCoupon() {
-    print(discountCoupon);
-    var total=totalPriceItems - totalPriceItems * discountCoupon! / 100;
-    return total+10;
+  goToCheckOutPage() {
+    Get.toNamed(AppRoute.checkoutPage,
+        arguments: {"orderPrice": totalPriceItems});
   }
 
-  fetchData()async{
-    var response=await cartData.viewCart(2,2);
-    cartList.addAll(response);
-    print(response);
-  }
-
-
-  goToCheckOutPage(){
-    Get.toNamed(AppRoute.checkoutPage);
-  }
   refreshView() {
     resetVarData();
     // getCart();
@@ -59,120 +51,83 @@ class CartController extends GetxController{
   resetVarData() {
     totalPriceItems = 0;
     totalCount = 0;
+    getCart();
+    update();
   }
 
-  // checkCoupon() async {
-  //   statusRequest = StatusRequest.lodaing;
-  //   update();
-  //   var response = await cartData.checkCoupon(coupon.text);
-  //   statusRequest = handlingData(response);
-  //   if (StatusRequest.success == statusRequest) {
-  //     if (response['status'] == "success") {
-  //       Map<String, dynamic> responseCoupon = response['data'];
-  //       myCouponModel = MyCouponModel.fromJson(responseCoupon);
-  //       discountCoupon = myCouponModel!.CouponDiscount!;
-  //       nameCoupon = myCouponModel!.CouponName;
-  //       couponId = myCouponModel?.CouponId.toString();
-  //       update();
-  //     } else {
-  //       Get.snackbar("Coupon info", "may Coupon there is not yet");
-  //     }
-  //   } else {
-  //     statusRequest = StatusRequest.failure;
-  //   }
-  //   update();
-  //
-  // }
+  updateQuantity(cartId, int quantity) async {
+    statusRequest = StatusRequest.lodaing;
+    update();
+    try {
+      var response = await cartData.updateCart(cartId, quantity);
+      Get.snackbar("Success", "update Success ");
+      statusRequest=StatusRequest.none;
+      update();
+    } catch (e) {
+      statusRequest = StatusRequest.serverfailure;
+      update();
+    }
+    update();
+  }
 
+  delete(itemsId) async {
+    statusRequest = StatusRequest.lodaing;
+    update();
+    try {
+      var response = await cartData.deleteCart(itemsId);
+      Get.snackbar("Success", "Delete Success ");
+      statusRequest=StatusRequest.none;
+      update();
+    } catch (e) {
+      statusRequest = StatusRequest.serverfailure;
+      update();
+    }
+    update();
+  }
 
+  getCart() async {
+    statusRequest = StatusRequest.lodaing;
+    update();
 
-  // add(itemsId) async {
-  //   statusRequest = StatusRequest.lodaing;
-  //   try {
-  //     var response = await cartData.AddCart(
-  //         myService.sharedPrefrences.getString("userid")!, itemsId.toString());
-  //     statusRequest = handlingData(response);
-  //     if (StatusRequest.success == statusRequest) {
-  //       if (response['status'] == "success") {
-  //         Get.snackbar("Success", "Add Success ");
-  //         ProductsdetailsControllerImp c =
-  //         Get.put(ProductsdetailsControllerImp());
-  //         c.refreshPage();
-  //       }
-  //     } else {
-  //       statusRequest = StatusRequest.failure;
-  //     }
-  //   } catch (e) {
-  //     statusRequest = StatusRequest.serverfailure;
-  //   }
-  //   update();
-  // }
+    var response = await cartData.viewCart();
 
-  // delete(itemsId) async {
-  //   statusRequest = StatusRequest.lodaing;
-  //   try {
-  //     var response = await cartData.DeleteCart(
-  //         myService.sharedPrefrences.getString("userid")!, itemsId.toString());
-  //     statusRequest = handlingData(response);
-  //     if (StatusRequest.success == statusRequest) {
-  //       if (response['status'] == "success") {
-  //         Get.snackbar("Success", "delete Success ");
-  //         ProductsdetailsControllerImp c =
-  //         Get.put(ProductsdetailsControllerImp());
-  //         c.refreshPage();
-  //       }
-  //     } else {
-  //       statusRequest = StatusRequest.failure;
-  //     }
-  //   } catch (e) {
-  //     statusRequest = StatusRequest.serverfailure;
-  //   }
-  //   update();
-  // }
+    // التأكد من أن response هو Map ويحتوي على مفتاح "items"
+    if (response is Map<String, dynamic> && response.containsKey("items")) {
+      var items = response["items"];
+      if (items is List) {
+        if (items.isNotEmpty) {
+          cartList.clear();
+          cartList
+              .addAll(items.map<Items>((e) => Items.fromJson(e)).toList());
+          print("Cart items loaded successfully: $cartList");
+          for(var i=0; i<items.length; i++){
+            totalPriceItems+=double.parse(cartList[i].product!.priceAfterDiscount!) * cartList[i].quantity!.toInt() ;
+          }
+          print(totalPriceItems);
+        }
+      } else {
+        print("Error: 'items' is not a List");
+        statusRequest = StatusRequest.serverfailure;
+      }
+    } else {
+      print("Error: Unexpected response format");
+      statusRequest = StatusRequest.serverfailure;
+    }
 
-  // getCart() async {
-  //   data.clear();
-  //   statusRequest = StatusRequest.lodaing;
-  //   update();
-  //   var response = await cartData
-  //       .viewCart(myService.sharedPrefrences.getString("userid")!);
-  //   statusRequest = handlingData(response);
-  //   if (StatusRequest.success == statusRequest) {
-  //     if (response['status'] == "success") {
-  //       if (response['datacart']['status'] == "success") {
-  //         data.clear();
-  //         Map responsetotalitems = response["countprice"];
-  //         totalCount = int.parse(responsetotalitems["totalcount"]);
-  //         totalPriceItems =
-  //             int.parse(responsetotalitems["totalprice"].toString());
-  //         data.addAll(response['datacart']['data']);
-  //       } else {
-  //         totalCount = 0;
-  //         totalPriceItems = 0;
-  //       }
-  //     } else {
-  //       Get.defaultDialog(
-  //         title: "Warning",
-  //         middleText: "Categories view not found ",
-  //       );
-  //     }
-  //   } else {
-  //     statusRequest = StatusRequest.failure;
-  //   }
-  //   update();
-  // }
+    statusRequest = StatusRequest.none;
+    update();
+  }
 
   @override
   void dispose() {
-    coupon.dispose();
     super.dispose();
   }
 
-  // GoToCheckOut() {
-  //   Get.offAllNamed(AppRoute.CheckoutPage, arguments: {
-  //     "ordersprice": totalPriceItems,
-  //     "couponid": couponId.toString(),
-  //     "coupondiscounted": discountCoupon.toString()
-  //   });
-  // }
+// GoToCheckOut() {
+//   Get.offAllNamed(AppRoute.CheckoutPage, arguments: {
+//     "ordersprice": totalPriceItems,
+//     "couponid": couponId.toString(),
+//     "coupondiscounted": discountCoupon.toString()
+//   });
+// }
 }

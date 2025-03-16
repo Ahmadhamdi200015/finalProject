@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iug/core/constant/route.dart';
 import 'package:iug/core/services/service.dart';
 import 'package:iug/view/screen/notification/notification_page.dart';
 import 'package:iug/view/screen/profile/profile_page.dart';
 
 import '../../view/screen/home/home_page.dart';
+import '../../view/screen/items/offers_page.dart';
+import '../../view/screen/profile/order_page.dart';
 
 class HomeScreenController extends GetxController{
   int currentpage=0;
@@ -12,15 +15,15 @@ class HomeScreenController extends GetxController{
 
   List<Widget> listPage=const[
     HomePage(),
-    NotificationPage(),
-    HomePage(),
+    OrderPage(),
+    OffersPage(),
     ProfilePage()
   ];
 
   List<String> titlebottombar=const[
     "Home",
-    "Notification",
-    "Settings",
+    "Orders",
+    "Offers",
     "Profile"
   ];
   @override
@@ -28,6 +31,9 @@ class HomeScreenController extends GetxController{
     currentpage=i;
     update();
 
+  }
+  goToCart(){
+    Get.toNamed(AppRoute.cartPage);
   }
 @override
   void onInit() {

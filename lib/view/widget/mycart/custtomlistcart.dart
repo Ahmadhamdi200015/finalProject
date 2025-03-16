@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iug/core/constant/app_color/app_color.dart';
@@ -32,11 +33,12 @@ class CusttomListCart extends StatelessWidget {
             children: [
               Expanded(
                   flex: 2,
-                  child: Image.asset(
-                    fit: BoxFit.fill,
-                    image,
+                  child: CachedNetworkImage(
                     width: 50,
                     height: 50,
+                    imageUrl: image,
+                    placeholder: (context, url) => const CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
                   )),
               Expanded(
                 flex: 3,

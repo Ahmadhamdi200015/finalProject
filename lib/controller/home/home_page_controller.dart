@@ -12,13 +12,11 @@ import 'package:iug/data/model/itemsmodel.dart';
 
 class HomePageController extends GetxController {
   ProductsData productsData = ProductsData(Get.find());
-  CategoryData categoryData=CategoryData(Get.find());
+  CategoryData categoryData = CategoryData(Get.find());
   StatusRequest statusRequest = StatusRequest.none;
   List<ItemsModel> products = [];
   List<Categorymodel> categories = [];
   MyService myService = Get.find();
-
-
 
   Future<void> fetchCategories() async {
     statusRequest = StatusRequest.lodaing;
@@ -29,10 +27,12 @@ class HomePageController extends GetxController {
 
       // التأكد من أن response هو List
       if (response is List) {
-        categories.addAll(response.map<Categorymodel>((e) => Categorymodel.fromJson(e)).toList());
-        Get.snackbar('Success', 'getData Successful');
+        categories.addAll(response
+            .map<Categorymodel>((e) => Categorymodel.fromJson(e))
+            .toList());
       } else {
-        throw Exception("Invalid response format: Expected List but got ${response.runtimeType}");
+        throw Exception(
+            "Invalid response format: Expected List categories but got ${response.runtimeType}");
       }
 
       statusRequest = StatusRequest.none;
@@ -56,11 +56,11 @@ class HomePageController extends GetxController {
 
       // التأكد من أن response هو List
       if (response is List) {
-        products.addAll(response.map<ItemsModel>((e) => ItemsModel.fromJson(e)).toList());
-        print('products is ======:$products');
-        Get.snackbar('Success', 'getData Successful');
+        products.addAll(
+            response.map<ItemsModel>((e) => ItemsModel.fromJson(e)).toList());
       } else {
-        throw Exception("Invalid response format: Expected List but got ${response.runtimeType}");
+        throw Exception(
+            "Invalid response format: Expected List products but got ${response.runtimeType}");
       }
 
       statusRequest = StatusRequest.none;
@@ -73,10 +73,9 @@ class HomePageController extends GetxController {
       );
     }
     update();
-
   }
 
-  gotoItemsView(List categories, int selectedCat,int catId) {
+  gotoItemsView(List categories, int selectedCat, int catId) {
     Get.toNamed(AppRoute.itemsPage, arguments: {
       "categories": categories,
       "selectedCat": selectedCat,
@@ -85,9 +84,8 @@ class HomePageController extends GetxController {
   }
 
   goToItemsDetails(ItemsModel itemsModel) {
-    Get.toNamed(AppRoute.itemsDetailsPage,arguments:{
-      'itemsModel':itemsModel
-    });
+    Get.toNamed(AppRoute.itemsDetailsPage,
+        arguments: {'itemsModel': itemsModel});
   }
 
   @override

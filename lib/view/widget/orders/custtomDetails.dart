@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:iug/controller/profile/order_controller.dart';
+import 'package:iug/controller/order/order_controller.dart';
+import 'package:iug/data/model/myOrders.dart';
 
 import '../../../core/constant/app_color/app_color.dart';
 
 class CustomDetails extends GetView<OrderController> {
-
-  const CustomDetails({super.key});
+  final MyOrder myOrdersModel;
+  const CustomDetails({super.key,required this.myOrdersModel});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Text(
-          "TotalPrice: 360\$",
-          style: TextStyle(
+         Text(
+          "TotalPrice: ${myOrdersModel.totalAmount}\$",
+          style: const TextStyle(
               color: AppColor.primaryColor, fontWeight: FontWeight.bold),
         ),
         const Spacer(),
@@ -40,6 +41,7 @@ class CustomDetails extends GetView<OrderController> {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           color: AppColor.primaryColor,
           onPressed: () {
+            controller.goToDetailsPage(myOrdersModel, myOrdersModel.id!);
           },
           child: const Text(
             "Details",

@@ -15,9 +15,10 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     ProfileController controller=Get.put(ProfileController());
     return Container(
-        margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        margin: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
         child: SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CircleAvatar(
@@ -26,46 +27,18 @@ class ProfilePage extends StatelessWidget {
               ),
               Container(
                   margin: const EdgeInsets.symmetric(vertical: 10),
-                  child: const Text(
-                    'Ether Howard',
-                    style: TextStyle(
+                  child:  Text(
+                    controller.getName(),
+                    style: const TextStyle(
                         color: Colors.black, fontWeight: FontWeight.bold,fontSize: 20),
                   )),
-              const CustomListTile(
-                textTitle: 'Your Profile',
-                leading: Icon(
-                  Icons.person_outline,
-                  color: AppColor.primaryColor,
-                ),
-                trailing: Icon(
-                  Icons.arrow_forward_ios_outlined,
-                  color: AppColor.primaryColor,
-                ),
-              ),
-              Divider(
-                color: Colors.grey.shade300,
-              ),
-              const CustomListTile(
-                textTitle: 'Manage Address',
-                leading: Icon(
-                  Icons.location_on_outlined,
-                  color: AppColor.primaryColor,
-                ),
-                trailing: Icon(
-                  Icons.arrow_forward_ios_outlined,
-                  color: AppColor.primaryColor,
-                ),
-              ),
-              Divider(
-                color: Colors.grey.shade300,
-              ),
                CustomListTile(
                 onTap: (){
-                  controller.goToOrderPage();
+                  controller.goToAddressPage();
                 },
-                textTitle: 'My Orders',
+                textTitle: 'Manage Address',
                 leading: const Icon(
-                  Icons.shopping_bag_outlined,
+                  Icons.location_on_outlined,
                   color: AppColor.primaryColor,
                 ),
                 trailing: const Icon(
@@ -80,7 +53,7 @@ class ProfilePage extends StatelessWidget {
                 onTap: () {
                    controller.goToArchivePage();
                 },
-                textTitle: 'My Archive',
+                textTitle: 'My Orders Archive',
                 leading: const Icon(
                   Icons.archive_outlined,
                   color: AppColor.primaryColor,

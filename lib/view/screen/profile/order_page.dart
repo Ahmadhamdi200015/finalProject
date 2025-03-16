@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iug/controller/profile/order_controller.dart';
+import 'package:iug/controller/order/order_controller.dart';
+import 'package:jiffy/jiffy.dart';
 
+import '../../../core/constant/app_color/app_color.dart';
 import '../../widget/orders/custtomDetails.dart';
 
 class OrderPage extends StatelessWidget {
@@ -28,7 +30,7 @@ class OrderPage extends StatelessWidget {
           child: GetBuilder<OrderController>(
             builder: (controller) =>
                 ListView.builder(
-                  itemCount: 4,
+                  itemCount: controller.listOrders.length,
                   itemBuilder: (context, index) =>
                       Container(
                         margin: const EdgeInsets.symmetric(vertical: 10),
@@ -45,19 +47,21 @@ class OrderPage extends StatelessWidget {
                                 Container(
                                   padding:
                                   const EdgeInsets.symmetric(vertical: 10),
-                                  child: const Row(
+                                  child:  Row(
                                     mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        "Number of order : #20",
-                                        style: TextStyle(
+                                        "Number of order : #${controller.listOrders[index].id}",
+                                        style: const TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
-                                        '4h ago',
-                                        style: TextStyle(
-                                            color: Colors.black,
+                                        Jiffy.parse(
+                                            '${controller.listOrders[index].orderDate}')
+                                            .fromNow(),
+                                        style: const TextStyle(
+                                            color: AppColor.fourthColor,
                                             fontWeight: FontWeight.bold),
                                       )
                                     ],
@@ -66,26 +70,26 @@ class OrderPage extends StatelessWidget {
                                 const Divider(),
                                 Container(
                                   margin: const EdgeInsets.only(bottom: 10),
-                                  child: const Text(
-                                      "Type Order : Delivery"),
+                                  child:  Text(
+                                      "Type Order : ${controller.printTypeOrder(controller.listOrders[index].isHomeDelivery)}"),
                                 ),
                                 Container(
                                   margin: const EdgeInsets.only(bottom: 10),
-                                  child: const Text(
-                                      "Type payment : Cash"),
+                                  child:  Text(
+                                      "Type payment : ${controller.printMethodOrder(controller.listOrders[index].paymentMethod)}"),
                                 ),
                                 Container(
                                   margin: const EdgeInsets.only(bottom: 10),
-                                  child: const Text(
-                                      "Delivery price :  10\$"),
+                                  child:  Text(
+                                      "Delivery price :  ${controller.listOrders[index].deliveryPrice}\$"),
                                 ),
                                 Container(
                                   margin: const EdgeInsets.only(bottom: 10),
-                                  child: const Text(
-                                      "Order Status :  Pending"),
+                                  child:  Text(
+                                      "Order Status :  ${controller.listOrders[index].status}"),
                                 ),
                                 const Divider(),
-                                const CustomDetails(
+                                 CustomDetails(myOrdersModel:controller.listOrders[index],
                                 ),
                               ],
                             ),

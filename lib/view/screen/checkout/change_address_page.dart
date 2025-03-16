@@ -23,38 +23,59 @@ class ChangeAddressPage extends StatelessWidget {
         ),
         body: GetBuilder<ShippingAddressController>(
           builder: (controller) {
-            return Container(
-                margin:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                child: ListView.builder(
-                  itemCount: controller.data.length,
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        RadioListTile(
-                            activeColor: AppColor.primaryColor,
-                            subtitle:  Text(
-                              '${controller.data[index].AddressCity}',
-                              style: const TextStyle(color: AppColor.thirdColor),
+            return controller.data.isEmpty
+                ? Center(
+                    child: MaterialButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    color: AppColor.primaryColor,
+                    onPressed: () {
+                      controller.goToAddAddress();
+                    },
+                    child: const Text(
+                      'Add Your Address ',
+                      style:
+                          TextStyle(color: AppColor.secondColor, fontSize: 20),
+                    ),
+                  ))
+                : Container(
+                    margin: const EdgeInsets.symmetric(
+                        vertical: 20, horizontal: 20),
+                    child: ListView.builder(
+                      itemCount: controller.data.length,
+                      itemBuilder: (context, index) {
+                        return Column(
+                          children: [
+                            RadioListTile(
+                                activeColor: AppColor.primaryColor,
+                                subtitle: Text(
+                                  '${controller.data[index].AddressCity} , ${controller.data[index].AddressStreet}',
+                                  style: const TextStyle(
+                                      color: AppColor.thirdColor),
+                                ),
+                                title: Text(
+                                  '${controller.data[index].AddressName}',
+                                  style: const TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                value: controller.data[index].AddressName ?? "",
+                                groupValue: controller.selectedValue ?? "",
+                                onChanged: (val) {
+                                  controller.changeValue(
+                                      val!,
+                                      controller.data[index].AddressCity ?? '',
+                                      controller.data[index].AddressStreet ??
+                                          '',
+                                      controller.data[index].AddressId!);
+                                }),
+                            Divider(
+                              color: Colors.grey.shade300,
                             ),
-                            title:   Text(
-                              '${controller.data[index].AddressName}',
-                              style:const TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            value: 'Home',
-                            groupValue: controller.selectedValue,
-                            onChanged: (val) {
-                              controller.changeValue(val);
-                            }),
-                        Divider(
-                          color: Colors.grey.shade300,
-                        ),
-                      ],
-                    );
-                  },
-                ));
+                          ],
+                        );
+                      },
+                    ));
           },
         ));
   }

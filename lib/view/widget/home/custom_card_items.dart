@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iug/applink.dart';
@@ -27,10 +28,13 @@ class CustomCardItems extends GetView<HomePageController>{
                   decoration: BoxDecoration(
                       color: AppColor.secondColor,
                       borderRadius: BorderRadius.circular(10)),
-                  child: Image.network(
-                    "${AppLink.imagesItems}${itemsModel.itemsImage!}",
+
+                  child: CachedNetworkImage(
                     width: 100,
                     height: 100,
+                    imageUrl: "${AppLink.imagesItems}${itemsModel.itemsImage!}",
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
                 ),
 

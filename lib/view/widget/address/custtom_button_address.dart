@@ -12,8 +12,9 @@ class CusttomButtonAddress extends StatelessWidget{
     return  Container(
       margin: const EdgeInsets.symmetric(horizontal: 40,vertical: 20),
       child: MaterialButton(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         padding: const EdgeInsets.symmetric(vertical: 15),
-        color:AppColor.fourthColor,
+        color:AppColor.primaryColor,
         textColor: AppColor.secondColor,
         onPressed:onPressed,
         child:child,

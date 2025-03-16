@@ -75,8 +75,8 @@ class ArchivePage extends StatelessWidget{
                                     "Order Status :  Archive"),
                               ),
                               const Divider(),
-                              const CustomDetails(
-                              ),
+                              //  CustomDetails(myOrdersModel:controller. ,
+                              // ),
                             ],
                           ),
                         ),

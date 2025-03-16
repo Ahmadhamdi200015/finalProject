@@ -1,6 +1,7 @@
+import 'dart:ffi';
+
 class MyAddressModel {
   int? AddressId;
-  int? AddressUsersid;
   String? AddressName;
   String? AddressCity;
   String? AddressStreet;
@@ -10,7 +11,6 @@ class MyAddressModel {
 
   MyAddressModel(
       {this.AddressId,
-        this.AddressUsersid,
         this.AddressName,
         this.AddressCity,
         this.AddressStreet,
@@ -19,24 +19,22 @@ class MyAddressModel {
         });
 
   MyAddressModel.fromJson(Map<String, dynamic> json) {
-    AddressId = json['address_id'];
-    AddressUsersid = json['address_userid'];
-    AddressName = json['address_name'];
-    AddressCity = json['address_city'];
-    AddressStreet = json['address_street'];
-    AddressLat = json['address_lat'];
-    AddressLong = json['address_long'];
+    AddressId = json['id'];
+    AddressName = json['label'];
+    AddressCity = json['address'];
+    AddressStreet = json['streetname'];
+    AddressLat = json['latitude'];
+    AddressLong = json['longitude'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['address_id'] = AddressId;
-    data['address_userid'] = AddressUsersid;
-    data['address_name'] = AddressName;
-    data['address_city'] = AddressCity;
-    data['address_street'] = AddressStreet;
-    data['address_lat'] = AddressLat;
-    data['address_long'] = AddressLong;
+    data['id'] = AddressId;
+    data['label'] = AddressName;
+    data['address'] = AddressCity;
+    data['streetname'] = AddressStreet;
+    data['latitude'] = AddressLat;
+    data['longitude'] = AddressLong;
 
     return data;
   }

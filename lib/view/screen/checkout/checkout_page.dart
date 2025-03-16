@@ -48,13 +48,13 @@ class CheckoutPage extends StatelessWidget {
                       )),
                   ListTile(
                     title:  Text(
-                      controller.changeAddress(),
+                      controller.shippingAddressLabel??'',
                       style: const TextStyle(
                           fontWeight: FontWeight.bold, color: Colors.black),
                     ),
-                    subtitle: const Text(
-                      " Gaza , Stripe, Alramal",
-                      style: TextStyle(color: AppColor.thirdColor),
+                    subtitle:  Text(
+                      "${controller.shippingAddressCity} , ${controller.shippingAddressStreet}",
+                      style: const TextStyle(color: AppColor.thirdColor),
                     ),
                     trailing: IconButton(
                         color: Colors.white,

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iug/controller/items/items_controller.dart';
@@ -5,6 +6,8 @@ import 'package:iug/core/constant/app_color/app_color.dart';
 import 'package:iug/core/constant/route.dart';
 import 'package:iug/view/widget/products/custom_list_items.dart';
 import 'package:iug/view/widget/public/handlingdataview.dart';
+
+import '../../../applink.dart';
 
 class ItemsPage extends StatelessWidget {
   const ItemsPage({super.key});
@@ -26,7 +29,7 @@ class ItemsPage extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         child: ListView(
           children: [
-            const CustomListItems(),
+            // const CustomListItems(),
             const SizedBox(
               height: 20,
             ),
@@ -60,24 +63,13 @@ class ItemsPage extends StatelessWidget {
                                   decoration: BoxDecoration(
                                       color: AppColor.secondColor,
                                       borderRadius: BorderRadius.circular(20)),
-                                  child: Image.network(
-                                    '${controller.productsList[index].itemsImage}',
+                                  child: CachedNetworkImage(
                                     width: 100,
                                     height: 100,
+                                    imageUrl: "${AppLink.imagesItems}${controller.productsList[index].itemsImage}",
+                                    placeholder: (context, url) => const CircularProgressIndicator(),
+                                    errorWidget: (context, url, error) => const Icon(Icons.error),
                                   ),
-                                ),
-                                Positioned(
-                                  top: 10,
-                                  right: 10,
-                                  child: Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(20)),
-                                      child: const Icon(
-                                        Icons.favorite_border_outlined,
-                                        color: Colors.red,
-                                      )),
                                 ),
                               ],
                             ),

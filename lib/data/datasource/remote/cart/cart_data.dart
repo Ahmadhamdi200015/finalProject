@@ -6,7 +6,7 @@ class CartData {
 
   CartData(this.crud);
 
-  Future<dynamic> AddCart(int productId, int quantity) async {
+  Future<dynamic> addCart(int productId, int quantity) async {
     var response = await crud.dataPost(
         AppLink.cartAdd, {"product_id": productId, "quantity": quantity});
     return response.fold(
@@ -15,35 +15,25 @@ class CartData {
         );
   }
 
-  Future<dynamic> DeleteCart(String userid, String itemsid) async {
+  Future<dynamic> deleteCart(int itemsId) async {
+    var response = await crud.deleteData(AppLink.cartDelete(itemsId), {});
+    return response.fold(
+        (l) => l, // Handle the left side of the result (typically an error)
+        (r) => r // Handle the right side of the result (typically the data)
+        );
+  }
+
+  Future<dynamic> updateCart(int cartId, int quantity) async {
     var response = await crud
-        .dataPost(AppLink.cartDelete, {"userid": userid, "itemsid": itemsid});
+        .updateData(AppLink.cartUpdate(cartId), {"quantity": quantity});
     return response.fold(
         (l) => l, // Handle the left side of the result (typically an error)
         (r) => r // Handle the right side of the result (typically the data)
         );
   }
 
-  // Future<dynamic> GetCountItems(String userid, String itemsid) async {
-  //   var response = await crud
-  //       .dataPost(AppLink.cartgetCount, {"userid": userid, "itemsid": itemsid});
-  //   return response.fold(
-  //       (l) => l, // Handle the left side of the result (typically an error)
-  //       (r) => r // Handle the right side of the result (typically the data)
-  //       );
-  // }
-
-  Future<dynamic> viewCart(int product_id,int quantity) async {
-    var response = await crud.dataPost(AppLink.cartView, {'product_id':product_id,'quantity':quantity});
-    return response.fold(
-        (l) => l, // Handle the left side of the result (typically an error)
-        (r) => r // Handle the right side of the result (typically the data)
-        );
-  }
-
-  Future<dynamic> checkCoupon(String CouponName) async {
-    var response =
-        await crud.dataPost(AppLink.CouponCheck, {"couponName": CouponName});
+  Future<dynamic> viewCart() async {
+    var response = await crud.dataGet(AppLink.cartView, {});
     return response.fold(
         (l) => l, // Handle the left side of the result (typically an error)
         (r) => r // Handle the right side of the result (typically the data)

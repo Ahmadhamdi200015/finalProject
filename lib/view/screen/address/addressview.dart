@@ -16,7 +16,7 @@ class AddressView extends StatelessWidget {
       backgroundColor: AppColor.secondColor,
       appBar: AppBar(title: const Text("Address View"),centerTitle: true,backgroundColor: AppColor.secondColor,),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColor.fourthColor,
+        backgroundColor: AppColor.primaryColor,
         onPressed: () {
           controller.goToAddAddress();
         },
@@ -36,7 +36,7 @@ class AddressView extends StatelessWidget {
                     return InkWell(
                       onLongPress: () {
                         controller.removeAddress(
-                            controller.data[index].AddressId.toString());
+                            controller.data[index].AddressId!);
                       },
                       child: Container(
                         alignment: Alignment.center,
@@ -47,14 +47,14 @@ class AddressView extends StatelessWidget {
                             title:
                                 Text("${controller.data[index].AddressCity}"),
                             trailing: Text(
-                              "${controller.data[index].AddressStreet}",
+                              "${controller.data[index].AddressName}",
                               style:const TextStyle(
                                   fontSize: 17,
                                   fontWeight: FontWeight.bold,
-                                  color: AppColor.thirdColor),
+                                  color: AppColor.primaryColor),
                             ),
                             subtitle:
-                                Text("${controller.data[index].AddressName}"),
+                                Text("${controller.data[index].AddressStreet}"),
                           ),
                         ),
                       ),
