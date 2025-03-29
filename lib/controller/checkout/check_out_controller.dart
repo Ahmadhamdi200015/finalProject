@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
-import 'package:iug/controller/address/shipping_address_controller.dart';
-import 'package:iug/core/constant/route.dart';
-import 'package:iug/core/function/staterequest.dart';
-import 'package:iug/data/datasource/remote/address/address_data.dart';
-import 'package:iug/data/datasource/remote/checkout/check_out_data.dart';
-import 'package:iug/data/model/addressmodel.dart';
+import 'package:gazaStore/controller/address/shipping_address_controller.dart';
+import 'package:gazaStore/core/constant/route.dart';
+import 'package:gazaStore/core/function/staterequest.dart';
+import 'package:gazaStore/data/datasource/remote/address/address_data.dart';
+import 'package:gazaStore/data/datasource/remote/checkout/check_out_data.dart';
+import 'package:gazaStore/data/model/addressmodel.dart';
 
 import '../../core/stripe_payment/payment_manger.dart';
 
@@ -69,6 +69,14 @@ class CheckOutController extends GetxController {
 
     if (response is List) {
       addressList.addAll(response.map((e) => MyAddressModel.fromJson(e)));
+      if(addressList.isNotEmpty){
+          shippingAddress = addressList.first.AddressId ;
+          shippingAddressLabel = addressList.first.AddressName ;
+          shippingAddressCity = addressList.first.AddressCity;
+          shippingAddressStreet = addressList.first.AddressStreet ;
+
+      }
+
     }
 
     statusRequest = StatusRequest.none;
@@ -77,41 +85,49 @@ class CheckOutController extends GetxController {
 
 
 
-  Future<void> addOrders() async {
+  addOrders() async {
+    if ((shippingAddressCity ?? '').isEmpty) {
+      return Get.snackbar('Warning', 'Firstly Add Address');
+    }
+
     statusRequest = StatusRequest.lodaing;
     update();
 
-    // في حالة الدفع عبر Stripe
-    if (selectedValue == 1) {
-      await PaymentManger.makePayment(orderPrice.toInt(), "USD");
+    try {
+      // في حالة الدفع عبر Stripe
+      if (selectedValue == 1) {
+        bool paymentSuccess = await PaymentManger.makePayment(orderPrice.toInt(), "USD");
+        if (!paymentSuccess) {
+          statusRequest = StatusRequest.failure;
+          update();
+          return Get.snackbar('Error', 'Payment Failed');
+        }
+      }
+
+      var response = await checkOutData.addOrder(
+        shippingAddress ,
+        selectedValue ?? 0,
+        checkType ,
+        10.0,
+      );
+
+        Get.snackbar('Success', 'CheckOut Process is Done');
+        await Get.offAllNamed(AppRoute.homeScreen);
+
+    } catch (e) {
+      Get.snackbar('Error', 'Something went wrong: $e');
+    } finally {
+      statusRequest = StatusRequest.success;
+      update();
     }
-
-    var response = await checkOutData.addOrder(
-      shippingAddress,
-        selectedValue,
-      checkType,
-      10.0,
-
-    );
-
-      Get.snackbar('Success', 'CheckOut Process is Done');
-      await Get.offAllNamed(AppRoute.homeScreen);
-
   }
+
 
   @override
   void onInit()async {
-   await getAddress();
     orderPrice=Get.arguments['orderPrice'];
-    if (addressList.length == 1) {
-      // إرجاع العنوان الوحيد تلقائيًا إلى صفحة الـ Checkout
-      Get.back(result: {
-        "id": addressList[0].AddressId,
-        "name": addressList[0].AddressName,
-        "city": addressList[0].AddressCity,
-        "street": addressList[0].AddressStreet,
-      });
-    }
+
+    await getAddress();
     super.onInit();
   }
 }

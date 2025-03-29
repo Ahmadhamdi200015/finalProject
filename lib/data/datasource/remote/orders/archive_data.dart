@@ -8,7 +8,7 @@ class ArchiveData {
   ArchiveData(this.crud);
 
   Future<dynamic> getArchive(String userid) async {
-    var response = await crud.dataPost(AppLink.archiveOrder,{
+    var response = await crud.dataPost(AppLink.pendingOrder,{
       "id":userid.toString()
     });
     return response.fold(

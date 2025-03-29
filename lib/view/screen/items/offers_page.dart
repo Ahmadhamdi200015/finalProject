@@ -2,8 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
-import 'package:iug/applink.dart';
-import 'package:iug/controller/items/offers_controller.dart';
+import 'package:gazaStore/applink.dart';
+import 'package:gazaStore/controller/items/offers_controller.dart';
 
 import '../../../controller/items/items_controller.dart';
 import '../../../core/constant/app_color/app_color.dart';
@@ -14,36 +14,37 @@ class OffersPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    OffersController itemsController=Get.put(OffersController());
+    OffersController itemsController = Get.put(OffersController());
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
-      children: [
-        Container(
-          margin: const EdgeInsets.symmetric(vertical: 40,horizontal: 20),
-          child: const Center(
-            child: Text(
-              'Offers',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          children: [
+            Container(
+              margin: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+              child: const Center(
+                child: Text(
+                  'Offers',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ),
             ),
-          ),
-        ),
-        Expanded(
-          child:   GetBuilder<OffersController>(
-            builder: (controller) => HandlingDataView(
-              statusRequest: controller.statusRequest,
-              widget: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 10,
-                    childAspectRatio: 0.8),
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: controller.productsOffer.length,
-                itemBuilder: (context, index) {
+            Expanded(
+                child: GetBuilder<OffersController>(
+              builder: (controller) => HandlingDataView(
+                statusRequest: controller.statusRequest,
+                widget: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10,
+                      childAspectRatio: 0.8),
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: controller.productsOffer.length,
+                  itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
-                        controller.goToProductDetails(controller.productsOffer[index]);
+                        controller.goToProductDetails(
+                            controller.productsOffer[index]);
                       },
                       child: Container(
                         padding: const EdgeInsets.symmetric(vertical: 5),
@@ -62,30 +63,20 @@ class OffersPage extends StatelessWidget {
                                   child: CachedNetworkImage(
                                     width: 100,
                                     height: 100,
-                                    imageUrl: "${AppLink.imagesItems}${controller.productsOffer[index].itemsImage}",
-                                    placeholder: (context, url) => const CircularProgressIndicator(),
-                                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                                    imageUrl:
+                                        "${AppLink.imagesItems}${controller.productsOffer[index].productImage}",
+                                    placeholder: (context, url) =>
+                                        const CircularProgressIndicator(),
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(Icons.error),
                                   ),
-                                ),
-                                Positioned(
-                                  top: 10,
-                                  right: 10,
-                                  child: Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                          BorderRadius.circular(20)),
-                                      child: const Icon(
-                                        Icons.favorite_border_outlined,
-                                        color: Colors.red,
-                                      )),
                                 ),
                               ],
                             ),
                             Container(
                               margin: const EdgeInsets.only(top: 10),
-                              child:  Text(
-                                "${controller.productsOffer[index].itemsBrand}",
+                              child: Text(
+                                "${controller.productsOffer[index].brand}",
                                 style: const TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold),
@@ -93,8 +84,8 @@ class OffersPage extends StatelessWidget {
                             ),
                             Container(
                               margin: const EdgeInsets.only(top: 5),
-                              child:  Text(
-                                "${controller.productsOffer[index].itemsName}",
+                              child: Text(
+                                "${controller.productsOffer[index].name}",
                                 style: const TextStyle(color: Colors.grey),
                               ),
                             ),
@@ -103,23 +94,30 @@ class OffersPage extends StatelessWidget {
                               children: [
                                 const Text("Price : "),
                                 Text(
-                                  "${controller.productsOffer[index].itemsPrice}\$",
-                                  style:
-                                  const TextStyle(color: AppColor.primaryColor),
-                                )
+                                  "\$${controller.productsOffer[index].priceAfterDiscount}",
+                                  style: const TextStyle(
+                                      color: AppColor.primaryColor),
+                                ),
+                                Spacer(),
+                                Text(
+                                  "\$${controller.productsOffer[index].price}",
+                                  style: const TextStyle(
+                                    color: AppColor.fourthColor,
+                                    decoration:
+                                        TextDecoration.lineThrough, // خط تحت النص
+                                  ),
+                                ),
                               ],
                             )
                           ],
                         ),
                       ),
                     );
-
-                },
+                  },
+                ),
               ),
-            ),
-          )
-        ),
-      ],
-    ));
+            )),
+          ],
+        ));
   }
 }

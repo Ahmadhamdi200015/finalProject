@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:iug/core/function/staterequest.dart';
-import 'package:iug/data/datasource/remote/products/products_data.dart';
-import 'package:iug/data/model/itemsmodel.dart';
+import 'package:gazaStore/core/function/staterequest.dart';
+import 'package:gazaStore/data/datasource/remote/products/products_data.dart';
+import 'package:gazaStore/data/model/itemsmodel.dart';
 
 import '../../core/constant/route.dart';
 

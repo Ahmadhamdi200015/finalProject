@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iug/core/constant/route.dart';
-import 'package:iug/core/services/service.dart';
-import 'package:iug/view/screen/notification/notification_page.dart';
-import 'package:iug/view/screen/profile/profile_page.dart';
+import 'package:gazaStore/core/constant/route.dart';
+import 'package:gazaStore/core/services/service.dart';
+import 'package:gazaStore/view/screen/notification/notification_page.dart';
+import 'package:gazaStore/view/screen/profile/profile_page.dart';
 
 import '../../view/screen/home/home_page.dart';
 import '../../view/screen/items/offers_page.dart';

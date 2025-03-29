@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iug/core/constant/app_color/app_color.dart';
-import 'package:iug/view/widget/mycart/custtomlistcart.dart';
-import 'package:iug/view/widget/mycart/custtomnavbar.dart';
-import 'package:iug/view/widget/public/handlingdataview.dart';
+import 'package:gazaStore/core/constant/app_color/app_color.dart';
+import 'package:gazaStore/view/widget/mycart/custtomlistcart.dart';
+import 'package:gazaStore/view/widget/mycart/custtomnavbar.dart';
+import 'package:gazaStore/view/widget/public/handlingdataview.dart';
 
 import '../../../applink.dart';
 import '../../../controller/process/cart_controller.dart';

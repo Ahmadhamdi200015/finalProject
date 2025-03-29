@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iug/controller/auth/change_password_controller.dart';
-import 'package:iug/core/constant/app_color/app_color.dart';
-import 'package:iug/core/function/validinput.dart';
-import 'package:iug/view/widget/auth/custom_button_auth.dart';
-import 'package:iug/view/widget/auth/custom_text_field.dart';
+import 'package:gazaStore/controller/auth/change_password_controller.dart';
+import 'package:gazaStore/core/constant/app_color/app_color.dart';
+import 'package:gazaStore/core/function/validinput.dart';
+import 'package:gazaStore/view/widget/auth/custom_button_auth.dart';
+import 'package:gazaStore/view/widget/auth/custom_text_field.dart';
 
 class ChangePasswordPage extends StatelessWidget {
   const ChangePasswordPage({super.key});

@@ -41,16 +41,13 @@ class AppLink{
   static  String updateAddress(int addressId)=>"$server/api/addresses/$addressId";
 
 
-//==============================Coupon=================================
 
-  static const String CouponCheck="$server/GLAREGROUPAPI/coupon/checkcoupon.php";
 
 //==============================CheckOut=================================
 
   static const String checkOut="$server/api/checkout";
   static const String pendingOrder="$server/api/orders";
   static  String detailsOrder(int orderId)=>"$server/api/orders/$orderId";
-  static const String archiveOrder="$server/GLAREGROUPAPI/orders/archive.php";
 
 
 

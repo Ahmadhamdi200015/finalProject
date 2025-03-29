@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iug/controller/items/items_controller.dart';
-import 'package:iug/core/constant/app_color/app_color.dart';
-import 'package:iug/core/constant/route.dart';
-import 'package:iug/view/widget/products/custom_list_items.dart';
-import 'package:iug/view/widget/public/handlingdataview.dart';
+import 'package:gazaStore/controller/items/items_controller.dart';
+import 'package:gazaStore/core/constant/app_color/app_color.dart';
+import 'package:gazaStore/core/constant/route.dart';
+import 'package:gazaStore/view/widget/products/custom_list_items.dart';
+import 'package:gazaStore/view/widget/public/handlingdataview.dart';
 
 import '../../../applink.dart';
 
@@ -66,7 +66,7 @@ class ItemsPage extends StatelessWidget {
                                   child: CachedNetworkImage(
                                     width: 100,
                                     height: 100,
-                                    imageUrl: "${AppLink.imagesItems}${controller.productsList[index].itemsImage}",
+                                    imageUrl: "${AppLink.imagesItems}${controller.productsList[index].productImage}",
                                     placeholder: (context, url) => const CircularProgressIndicator(),
                                     errorWidget: (context, url, error) => const Icon(Icons.error),
                                   ),
@@ -76,7 +76,7 @@ class ItemsPage extends StatelessWidget {
                             Container(
                               margin: const EdgeInsets.only(top: 10),
                               child:  Text(
-                                "${controller.productsList[index].itemsBrand}",
+                                "${controller.productsList[index].brand}",
                                 style: const TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold),
@@ -85,7 +85,7 @@ class ItemsPage extends StatelessWidget {
                             Container(
                               margin: const EdgeInsets.only(top: 5),
                               child:  Text(
-                                "${controller.productsList[index].itemsName}",
+                                "${controller.productsList[index].name}",
                                 style: const TextStyle(color: Colors.grey),
                               ),
                             ),
@@ -94,7 +94,7 @@ class ItemsPage extends StatelessWidget {
                               children: [
                                 const Text("Price : "),
                                 Text(
-                                  "${controller.productsList[index].itemsPrice}\$",
+                                  "${controller.productsList[index].price}\$",
                                   style:
                                       const TextStyle(color: AppColor.primaryColor),
                                 )

@@ -40,7 +40,7 @@ class DetailsOrder extends StatelessWidget {
                             Container(
                               margin: const EdgeInsets.symmetric(vertical: 15),
                               child: const Text(
-                                "City",
+                                "Delivery",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 17),
@@ -49,45 +49,30 @@ class DetailsOrder extends StatelessWidget {
                             Container(
                               margin: const EdgeInsets.symmetric(vertical: 10),
                               child: const Text(
-                                "Street",
+                                "Payment",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 17),
                               ),
                             ),
-                            Container(
-                              margin: const EdgeInsets.symmetric(vertical: 10),
-                              child: const Text(
-                                "Price Delivery",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 17),
-                              ),
-                            ),
+                           
                           ]),
                           TableRow(children: [
                             Container(
                               margin: const EdgeInsets.only(bottom: 10),
                               child: Text(
-                                "${controller.orderModel.deliveryAddress}",
+                                "${controller.printTypeOrder(controller.orderModel.isHomeDelivery)}",
                                 textAlign: TextAlign.center,
                               ),
                             ),
                             Container(
                               margin: const EdgeInsets.only(bottom: 10),
                               child: Text(
-                                "${controller.orderModel.deliveryAddress}",
+                                "${controller.printMethodOrder(controller.orderModel.paymentMethod)}",
                                 textAlign: TextAlign.center,
                               ),
                             ),
-                            Container(
-                              margin: const EdgeInsets.only(bottom: 10),
-                              child: Text(
-                                "${controller.orderModel.deliveryPrice}\$",
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(color: AppColor.primaryColor),
-                              ),
-                            ),
+
                           ])
                         ],
                       )),
@@ -111,7 +96,7 @@ class DetailsOrder extends StatelessWidget {
                               height: 10,
                             ),
                             Text(
-                              "${controller.orderModel.totalAmount}\$",
+                              "\$${controller.orderModel.totalAmount}",
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   color: AppColor.primaryColor,

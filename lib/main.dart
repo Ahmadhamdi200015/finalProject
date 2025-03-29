@@ -4,9 +4,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
-import 'package:iug/controller/local/local_controller.dart';
-import 'package:iug/routes.dart';
-import 'package:iug/view/screen/auth/login_page.dart';
+import 'package:gazaStore/controller/local/local_controller.dart';
+import 'package:gazaStore/routes.dart';
+import 'package:gazaStore/view/screen/auth/login_page.dart';
 
 import 'binding/initialbinding.dart';
 import 'core/function/fcmconfig.dart';

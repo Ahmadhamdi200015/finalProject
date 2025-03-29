@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:gazaStore/core/constant/imageasset.dart';
 import 'package:get/get.dart';
-import 'package:iug/controller/auth/sign_up_controller.dart';
-import 'package:iug/core/constant/app_color/app_color.dart';
+import 'package:gazaStore/controller/auth/sign_up_controller.dart';
+import 'package:gazaStore/core/constant/app_color/app_color.dart';
 
 import '../../../core/function/validinput.dart';
 import '../../widget/auth/custom_button_auth.dart';
@@ -29,7 +30,9 @@ class SignupPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-            Container(
+              Image.asset(ImageAsset.shoppingLogo,height: 100,width: 100,),
+
+              Container(
               margin:const EdgeInsets.only(bottom: 10),
               child: const  Text(textAlign: TextAlign.center,
                   'Create Account',

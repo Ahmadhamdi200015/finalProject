@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
-import 'package:iug/core/constant/route.dart';
-import 'package:iug/core/function/staterequest.dart';
-import 'package:iug/data/datasource/remote/category/category_data.dart';
-import 'package:iug/data/datasource/remote/products/products_data.dart';
-import 'package:iug/data/model/categorymodel.dart';
-import 'package:iug/data/model/itemsmodel.dart';
+import 'package:gazaStore/core/constant/route.dart';
+import 'package:gazaStore/core/function/staterequest.dart';
+import 'package:gazaStore/data/datasource/remote/category/category_data.dart';
+import 'package:gazaStore/data/datasource/remote/products/products_data.dart';
+import 'package:gazaStore/data/model/categorymodel.dart';
+import 'package:gazaStore/data/model/itemsmodel.dart';
 
 class ItemsController extends GetxController {
   int selectedItems = 0;

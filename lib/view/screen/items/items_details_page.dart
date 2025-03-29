@@ -4,11 +4,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iug/applink.dart';
-import 'package:iug/controller/items/products_details_controller.dart';
-import 'package:iug/core/constant/app_color/app_color.dart';
-import 'package:iug/core/constant/route.dart';
-import 'package:iug/view/widget/public/handlingdataview.dart';
+import 'package:gazaStore/applink.dart';
+import 'package:gazaStore/controller/items/products_details_controller.dart';
+import 'package:gazaStore/core/constant/app_color/app_color.dart';
+import 'package:gazaStore/core/constant/route.dart';
+import 'package:gazaStore/view/widget/public/handlingdataview.dart';
 
 import '../../widget/details/custtomiconbtn.dart';
 
@@ -44,7 +44,7 @@ class ItemsDetailsPage extends StatelessWidget {
                   style: TextStyle(color: AppColor.thirdColor),
                 ),
                 Text(
-                  '${controller.itemsModel.itemsPrice}\$',
+                  '${controller.itemsModel.priceAfterDiscount}\$',
                   style: const TextStyle(
                       color: AppColor.primaryColor,
                       fontWeight: FontWeight.bold,
@@ -60,7 +60,6 @@ class ItemsDetailsPage extends StatelessWidget {
               color: AppColor.primaryColor,
               onPressed: () {
                 controller.addItemsToCart(controller.itemsModel);
-                print(controller.itemsModel.itemsId);
               },
               child: const Row(
                 children: [
@@ -127,7 +126,7 @@ class ItemsDetailsPage extends StatelessWidget {
                   child: CachedNetworkImage(
                     width: 250,
                     height: 250,
-                    imageUrl: "${AppLink.imagesItems}${controller.itemsModel.itemsImage}",
+                    imageUrl: "${AppLink.imagesItems}${controller.itemsModel.productImage}",
                     placeholder: (context, url) => const CircularProgressIndicator(),
                     errorWidget: (context, url, error) => const Icon(Icons.error),
                   ),
@@ -143,33 +142,42 @@ class ItemsDetailsPage extends StatelessWidget {
                 Container(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      "${controller.itemsModel.itemsBrand}",
+                      "${controller.itemsModel.brand}",
                       style: const TextStyle(
-                        color: AppColor.fourthColor,
+                        color: AppColor.thirdColor,
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
                       ),
                     )),
+                const Divider(),
                 const SizedBox(
                   height: 5,
+                ),
+                const Text(
+                  'Product Name :',
+                  style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
+                  ),
                 ),
                 GetBuilder<ProductsDetailsController>(
                   builder: (controller) => HandlingDataView(
                     statusRequest: controller.statusRequest,
                     widget: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      padding: const EdgeInsets.only(bottom: 10),
                       child: Row(
                         children: [
                           Row(
                             children: [
                               Text(
-                                "${controller.itemsModel.itemsName}",
+                                "${controller.itemsModel.name}",
                                 style: const TextStyle(
-                                    color: Colors.black, fontSize: 22),
+                                    color: Colors.black, fontSize: 22,fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
-                          Spacer(),
+                          const Spacer(),
                           CusttomIconBtn(
                               icon: Icons.add,
                               onPressed: () async {
@@ -196,35 +204,23 @@ class ItemsDetailsPage extends StatelessWidget {
                     ),
                   ),
                 ),
+                const Divider(),
+
                 const Text(
-                  'Product Details ',
+                  'Product Details :',
                   style: TextStyle(
-                      color: Colors.black,
+                      color: Colors.grey,
                       fontSize: 20,
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.bold
+                      ),
                 ),
                 Text(
-                  '${controller.itemsModel.itemsDesc}',
-                  style: const TextStyle(color: Colors.grey),
+                  ' ${controller.itemsModel.description}',
+                  style: const TextStyle(color: Colors.black,fontSize: 20),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                const Row(
-                  children: [
-                    Text(
-                      "Select Color : ",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20),
-                    ),
-                    Text(
-                      "blue",
-                      style: TextStyle(color: AppColor.thirdColor),
-                    )
-                  ],
-                )
               ],
             ),
           )

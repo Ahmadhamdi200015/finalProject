@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:iug/core/constant/route.dart';
-import 'package:iug/core/services/service.dart';
-import 'package:iug/data/datasource/remote/auth/resetpassword_data.dart';
+
+
+import '../../core/services/service.dart';
+import '../../data/datasource/remote/auth/resetpassword_data.dart';
 
 class ChangePasswordController extends GetxController {
   TextEditingController? textPassword;

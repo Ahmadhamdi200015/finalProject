@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iug/applink.dart';
-import 'package:iug/controller/home/home_page_controller.dart';
-import 'package:iug/data/model/itemsmodel.dart';
+import 'package:gazaStore/applink.dart';
+import 'package:gazaStore/controller/home/home_page_controller.dart';
+import 'package:gazaStore/data/model/itemsmodel.dart';
 
 import '../../../core/constant/app_color/app_color.dart';
 
@@ -32,7 +32,7 @@ class CustomCardItems extends GetView<HomePageController>{
                   child: CachedNetworkImage(
                     width: 100,
                     height: 100,
-                    imageUrl: "${AppLink.imagesItems}${itemsModel.itemsImage!}",
+                    imageUrl: "${AppLink.imagesItems}${itemsModel.productImage!}",
                     placeholder: (context, url) => CircularProgressIndicator(),
                     errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
@@ -41,9 +41,17 @@ class CustomCardItems extends GetView<HomePageController>{
             Container(
               margin: const EdgeInsets.only(top: 10),
               child:  Text(
-                itemsModel.itemsName!,
+                itemsModel.name!,
                 style: const TextStyle(
                     color: Colors.black, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 10),
+              child:  Text(
+                "\$${itemsModel.priceAfterDiscount!}",
+                style:  TextStyle(
+                    color: AppColor.primaryColor, fontWeight: FontWeight.bold),
               ),
             ),
           ],

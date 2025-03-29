@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
-import 'package:iug/core/constant/route.dart';
-import 'package:iug/core/function/staterequest.dart';
-import 'package:iug/data/datasource/remote/orders/pending_data.dart';
-import 'package:iug/data/model/myOrders.dart';
+import 'package:gazaStore/core/constant/route.dart';
+import 'package:gazaStore/core/function/staterequest.dart';
+import 'package:gazaStore/data/datasource/remote/orders/pending_data.dart';
+import 'package:gazaStore/data/model/myOrders.dart';
 
 import '../../core/services/service.dart';
 

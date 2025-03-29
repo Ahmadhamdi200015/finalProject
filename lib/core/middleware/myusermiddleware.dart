@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iug/core/services/service.dart';
+import 'package:gazaStore/core/services/service.dart';
 import 'package:get/get.dart';
 
 import '../constant/route.dart';

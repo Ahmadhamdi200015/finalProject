@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:iug/core/constant/route.dart';
-import 'package:iug/data/datasource/remote/auth/forgetpassword_data.dart';
+import 'package:gazaStore/core/constant/route.dart';
+import 'package:gazaStore/data/datasource/remote/auth/forgetpassword_data.dart';
 
 class ForgetPasswordController extends GetxController{
   TextEditingController? textVerifiyCode;

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
-import 'package:iug/controller/home/home_page_controller.dart';
-import 'package:iug/data/model/categorymodel.dart';
-import 'package:iug/view/widget/public/handlingdataview.dart';
+import 'package:gazaStore/controller/home/home_page_controller.dart';
+import 'package:gazaStore/data/model/categorymodel.dart';
+import 'package:gazaStore/view/widget/public/handlingdataview.dart';
 
 import '../../../core/constant/app_color/app_color.dart';
 

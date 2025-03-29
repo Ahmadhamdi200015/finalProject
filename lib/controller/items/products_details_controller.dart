@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:iug/core/constant/route.dart';
-import 'package:iug/data/datasource/remote/favorites/favorites_data.dart';
-import 'package:iug/data/model/itemsmodel.dart';
+import 'package:gazaStore/core/constant/route.dart';
+import 'package:gazaStore/data/datasource/remote/favorites/favorites_data.dart';
+import 'package:gazaStore/data/model/itemsmodel.dart';
 
 import '../../core/function/handlingdata.dart';
 import '../../core/function/staterequest.dart';
@@ -20,21 +20,29 @@ class ProductsDetailsController extends GetxController {
   @override
   void onInit() {
     itemsModel = Get.arguments['itemsModel'];
+    countItems = 0; // ✅ إعادة ضبط عدد المنتجات إلى 0 عند فتح الصفحة
     super.onInit();
   }
 
   addItemsToCart(ItemsModel itemsModel) async {
     statusRequest = StatusRequest.lodaing;
+    update();
     try {
-      var response = await cartData.addCart(itemsModel.itemsId!, countItems);
-      Get.snackbar("Success", "Add product Success to Cart ");
-      Get.toNamed(AppRoute.cartPage);
+      if (countItems != 0) {
+        var response = await cartData.addCart(itemsModel.id!, countItems);
+        Get.snackbar("Success", "Add product Success to Cart ");
+        Get.toNamed(AppRoute.cartPage);
+      } else {
+        Get.snackbar('Message', 'Firstly add Count to items');
+      }
+      statusRequest = StatusRequest.success; // ✅ تأكد من إعادة الحالة
     } catch (e) {
       print("e:$e=======================");
       statusRequest = StatusRequest.serverfailure;
     }
     update();
   }
+
 
   addToFav(int productId) {
     statusRequest = StatusRequest.lodaing;

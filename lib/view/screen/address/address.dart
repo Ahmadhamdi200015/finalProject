@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:iug/view/widget/address/app_bar_address.dart';
+import 'package:gazaStore/view/widget/address/app_bar_address.dart';
 
 import '../../../controller/address/address_controller.dart';
 import '../../../core/constant/app_color/app_color.dart';

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:iug/core/constant/route.dart';
-import 'package:iug/core/services/service.dart';
+import 'package:gazaStore/core/constant/route.dart';
+import 'package:gazaStore/core/services/service.dart';
 
 class ProfileController extends GetxController {
   MyService myService = Get.find();
@@ -27,7 +27,7 @@ class ProfileController extends GetxController {
     Get.toNamed(AppRoute.addressView);
   }
   logOut()async{
-    await myService.sharedPrefrences.clear();
+    await myService.sharedPrefrences.remove('userId');
     Get.offAllNamed(AppRoute.login);
   }
 }

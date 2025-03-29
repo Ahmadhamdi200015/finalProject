@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
-import 'package:iug/core/constant/app_color/app_color.dart';
+import 'package:gazaStore/core/constant/app_color/app_color.dart';
 
 import '../../../controller/process/cart_controller.dart';
 
@@ -51,7 +51,7 @@ class CusttomNavBar extends GetView<CartController> {
                           fontWeight: FontWeight.bold,
                           color: AppColor.thirdColor, fontSize: 18),
                       ),
-                      Text("${controller.totalPriceItems}\$",
+                      Text("\$${controller.totalPriceItems}",
                           style: const TextStyle(
                               color: AppColor.primaryColor,
                               fontWeight: FontWeight.bold,
@@ -59,23 +59,6 @@ class CusttomNavBar extends GetView<CartController> {
                     ],
                   ),
                   const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text("DisCounted",
-                          style: TextStyle(
-                              color: AppColor.thirdColor,
-                              fontWeight: FontWeight.bold, fontSize: 18)),
-                      Text("${controller.discountCoupon}%",
-                          style: const TextStyle(
-                              color: AppColor.primaryColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 17))
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -105,7 +88,7 @@ class CusttomNavBar extends GetView<CartController> {
                       const Text("TotalPrice",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18)),
-                      Text("${controller.totalPriceItems}\$",
+                      Text("\$${controller.totalPriceItems}",
                           style: const TextStyle(
                               color: AppColor.primaryColor,
                               fontWeight: FontWeight.bold,

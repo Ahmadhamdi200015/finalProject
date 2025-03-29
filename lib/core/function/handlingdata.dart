@@ -1,4 +1,5 @@
-import 'package:iug/core/function/staterequest.dart';
+
+import 'package:gazaStore/core/function/staterequest.dart';
 
 handlingData(response) {
   if (response is StatusRequest) {

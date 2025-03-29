@@ -2,13 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:iug/core/constant/route.dart';
-import 'package:iug/core/function/staterequest.dart';
-import 'package:iug/core/services/service.dart';
-import 'package:iug/data/datasource/remote/category/category_data.dart';
-import 'package:iug/data/datasource/remote/products/products_data.dart';
-import 'package:iug/data/model/categorymodel.dart';
-import 'package:iug/data/model/itemsmodel.dart';
+import 'package:gazaStore/core/constant/route.dart';
+import 'package:gazaStore/core/function/staterequest.dart';
+import 'package:gazaStore/core/services/service.dart';
+import 'package:gazaStore/data/datasource/remote/category/category_data.dart';
+import 'package:gazaStore/data/datasource/remote/products/products_data.dart';
+import 'package:gazaStore/data/model/categorymodel.dart';
+import 'package:gazaStore/data/model/itemsmodel.dart';
 
 class HomePageController extends GetxController {
   ProductsData productsData = ProductsData(Get.find());
@@ -58,14 +58,16 @@ class HomePageController extends GetxController {
       if (response is List) {
         products.addAll(
             response.map<ItemsModel>((e) => ItemsModel.fromJson(e)).toList());
+        statusRequest=StatusRequest.none;
+        update();
       } else {
         throw Exception(
             "Invalid response format: Expected List products but got ${response.runtimeType}");
       }
 
-      statusRequest = StatusRequest.none;
     } catch (e) {
       statusRequest = StatusRequest.none;
+      update();
       print('ExceptionForProducts: $e');
       Get.defaultDialog(
         title: "Error",

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iug/controller/profile/profile_controller.dart';
+import 'package:gazaStore/controller/profile/profile_controller.dart';
 
 import '../../../core/constant/app_color/app_color.dart';
 

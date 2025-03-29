@@ -11,6 +11,11 @@ class ImageAsset {
 
   static const String transport = "$rootImages/transport.png";
   static const String delivery = "$rootImages/delir.png";
+  static const String shoppingLogo = "$rootImages/shopping.png";
+  static const String deliveryBus = "$rootImages/busdelivery.png";
+  static const String review = "$rootImages/review.png";
+
+
 
   //================lottie=============================
 

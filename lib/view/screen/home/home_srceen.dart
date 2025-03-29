@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iug/core/constant/app_color/app_color.dart';
-import 'package:iug/view/widget/public/custtombottombar.dart';
+import 'package:gazaStore/core/constant/app_color/app_color.dart';
+import 'package:gazaStore/view/widget/public/custtombottombar.dart';
 
 import '../../../controller/home/home_screen_controller.dart';
 
@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(HomeScreenController());
+    HomeScreenController controller=Get.put(HomeScreenController(),permanent: true);
     return GetBuilder<HomeScreenController>(
         builder: (controller) => Scaffold(
 
@@ -53,7 +53,7 @@ class HomeScreen extends StatelessWidget {
                         controller.changePage(1);
                       },
                       active: controller.currentpage == 1 ? true : false,
-                      iconBottom: Icons.notifications_none_outlined,
+                      iconBottom: Icons.production_quantity_limits,
                     ),
                   ],
                 ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iug/core/constant/app_color/app_color.dart';
-import 'package:iug/view/widget/checkout/custtom_checkout_method.dart';
+import 'package:gazaStore/core/constant/app_color/app_color.dart';
+import 'package:gazaStore/view/widget/checkout/custtom_checkout_method.dart';
 
 import '../../../controller/checkout/check_out_controller.dart';
 
@@ -121,16 +121,16 @@ class CheckoutPage extends StatelessWidget {
                   CusttomCheckoutMethod(
                       txtMethod: 'Delivery Man',
                       onTap: () {
-                        controller.chooseType('0');
+                        controller.chooseType('1');
                       },
-                      active: controller.checkType=='0'?true:false,
+                      active: controller.checkType=='1'?true:false,
                       txtSub: 'anything'),
                   CusttomCheckoutMethod(
                       txtMethod: 'pick it by yourself ',
                       onTap: () {
-                        controller.chooseType('1');
+                        controller.chooseType('0');
                       },
-                      active: controller.checkType=='1'?true:false,
+                      active: controller.checkType=='0'?true:false,
                       txtSub: 'anything')
                 ],
               ),

@@ -20,7 +20,7 @@ class dotController extends GetView<OnboardingControllerImp> {
               (index) => AnimatedContainer(
                     margin:const EdgeInsets.only(right: 5),
                     duration:const Duration(milliseconds: 600),
-                    width: controller.currentpage == index ? 20 : 6,
+                    width: controller.currentPage == index ? 20 : 6,
                     height: 6,
                     decoration: BoxDecoration(
                       color: AppColor.primaryColor,

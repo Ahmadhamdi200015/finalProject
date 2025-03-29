@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iug/core/constant/app_color/app_color.dart';
+import 'package:gazaStore/core/constant/app_color/app_color.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});

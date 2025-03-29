@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:iug/core/stripe_payment/stripe_key.dart';
+import 'package:gazaStore/core/stripe_payment/stripe_key.dart';
 
 abstract class PaymentManger {
   static Future<bool> makePayment(int amount, String currency) async {

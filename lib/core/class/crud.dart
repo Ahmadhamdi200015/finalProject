@@ -11,7 +11,6 @@ class Crud {
   Future<Either<StatusRequest, Map>> dataPost(String linkUrl, Map data) async {
     if (await CheckInternet()) {
       try {
-        print('trycrud');
         // إضافة الهيدر لدعم JSON
         final response = await http.post(
           Uri.parse(linkUrl),
@@ -37,7 +36,6 @@ class Crud {
           print(responseBody); // طباعة الاستجابة للتصحيح
           return Right(responseBody);
         } else {
-          print('================error is status');
           // معالجة الأخطاء بناءً على محتوى الاستجابة
           Map<String, dynamic> errorResponse = jsonDecode(response.body);
           print("Error Response: $errorResponse");
@@ -130,7 +128,6 @@ class Crud {
         print(response.statusCode);
 
         if (response.statusCode == 200 || response.statusCode == 201) {
-          print('===================status is status');
           // فك JSON للحصول على الاستجابة
           Map<String, dynamic> responseBody = jsonDecode(response.body);
 
@@ -142,7 +139,6 @@ class Crud {
           print(responseBody); // طباعة الاستجابة للتصحيح
           return Right(responseBody);
         } else {
-          print('================error is status');
           // معالجة الأخطاء بناءً على محتوى الاستجابة
           Map<String, dynamic> errorResponse = jsonDecode(response.body);
           print("Error Response: $errorResponse");
@@ -161,7 +157,6 @@ class Crud {
   Future<Either<StatusRequest, Map>> deleteData(String linkUrl, Map data) async {
     if (await CheckInternet()) {
       try {
-        // إضافة الهيدر لدعم JSON
         final response = await http.delete(
           Uri.parse(linkUrl),
           headers: {
@@ -169,27 +164,35 @@ class Crud {
             "Accept": "application/json",
             "Authorization": "Bearer ${await getToken()}"
           },
-          body: jsonEncode(data), // تحويل البيانات إلى JSON
+          body: jsonEncode(data),
         );
+
         print(response.statusCode);
 
         if (response.statusCode == 200 || response.statusCode == 201) {
-          print('===================status is status');
-          // فك JSON للحصول على الاستجابة
-          Map<String, dynamic> responseBody = jsonDecode(response.body);
+          if (response.body.isNotEmpty) {
+            Map<String, dynamic> responseBody = jsonDecode(response.body);
 
-          // إذا كان يحتوي على توكن، خزنه
-          if (responseBody.containsKey("token")) {
-            await saveToken(responseBody["token"]);
+            if (responseBody.containsKey("token")) {
+              await saveToken(responseBody["token"]);
+            }
+
+            print(responseBody);
+            return Right(responseBody);
+          } else {
+            print("Response body is empty");
+            return const Left(StatusRequest.serverfailure);
           }
-
-          print(responseBody); // طباعة الاستجابة للتصحيح
-          return Right(responseBody);
+        } else if (response.statusCode == 204) {
+          print('Address deleted successfully.');
+          return Right({}); // إرجاع خريطة فارغة بدلاً من محاولة تحليل JSON
         } else {
-          print('================error is status');
-          // معالجة الأخطاء بناءً على محتوى الاستجابة
-          Map<String, dynamic> errorResponse = jsonDecode(response.body);
-          print("Error Response: $errorResponse");
+          if (response.body.isNotEmpty) {
+            Map<String, dynamic> errorResponse = jsonDecode(response.body);
+            print("Error Response: $errorResponse");
+          } else {
+            print("Error Response is empty.");
+          }
           return const Left(StatusRequest.serverfailure);
         }
       } catch (e) {

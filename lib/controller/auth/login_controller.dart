@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:iug/core/constant/route.dart';
-import 'package:iug/core/function/staterequest.dart';
-import 'package:iug/core/services/service.dart';
+import 'package:gazaStore/core/constant/route.dart';
+import 'package:gazaStore/core/function/staterequest.dart';
+import 'package:gazaStore/core/services/service.dart';
 
 import '../../data/datasource/remote/auth/login_data.dart';
 
@@ -21,7 +21,8 @@ class LoginController extends GetxController {
   Login() async {
     if (formStateLogin.currentState!.validate()) {
       try {
-        print('Sending login request...');
+       statusRequest=StatusRequest.lodaing;
+       update();
 
         // استدعاء الدالة postData
         var response = await loginData.postData(
@@ -40,6 +41,8 @@ class LoginController extends GetxController {
           Get.snackbar('Success', 'Login Successful');
           Get.offAllNamed(AppRoute.homeScreen);
         } else {
+          statusRequest=StatusRequest.serverfailure;
+          update();
           print('Login failed: $response');
           Get.defaultDialog(
             title: "Login Error",
@@ -48,6 +51,8 @@ class LoginController extends GetxController {
         }
 
       } catch (e) {
+        statusRequest=StatusRequest.serverfailure;
+        update();
         print('Exception: $e');
         Get.defaultDialog(
           title: "Error",
@@ -83,7 +88,9 @@ class LoginController extends GetxController {
 
     }
   }
-  goToSignUp() {
-    Get.toNamed(AppRoute.signPage);
+  void goToSignUp() {
+    Get.delete<LoginController>(); // حذف الكونترولر من الذاكرة
+    Get.offAllNamed(AppRoute.signPage);
   }
+
 }

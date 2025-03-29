@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:iug/controller/order/order_controller.dart';
-import 'package:iug/data/model/myOrders.dart';
+import 'package:gazaStore/controller/order/order_controller.dart';
+import 'package:gazaStore/data/model/myOrders.dart';
 
 import '../../../core/constant/app_color/app_color.dart';
 
@@ -20,18 +20,6 @@ class CustomDetails extends GetView<OrderController> {
               color: AppColor.primaryColor, fontWeight: FontWeight.bold),
         ),
         const Spacer(),
-          MaterialButton(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            color: AppColor.primaryColor,
-            onPressed: () {
-            },
-            child: const Text(
-              "Tracking",
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
         const SizedBox(
           width: 5,
         ),

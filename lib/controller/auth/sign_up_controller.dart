@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:iug/core/constant/route.dart';
+import 'package:gazaStore/core/constant/route.dart';
 
 import '../../core/function/handlingdata.dart';
 import '../../core/function/staterequest.dart';
@@ -12,14 +12,15 @@ class SignUpController extends GetxController {
   TextEditingController? textPhone;
   TextEditingController? textPassword;
   TextEditingController? textConfirmPassword;
-  GlobalKey<FormState> formStateSign = GlobalKey();
+  late GlobalKey<FormState> formStateSign;
   SignupData signupData = SignupData(Get.find());
   StatusRequest stateRequest = StatusRequest.none;
 
   Future<void> SignUp() async {
     if (formStateSign.currentState!.validate()) {
       try {
-        print("============================= try");
+        stateRequest=StatusRequest.lodaing;
+        update();
 
         var response = await signupData.postData(textName!.text,
             textEmail!.text, textPassword!.text, textConfirmPassword!.text);
@@ -27,6 +28,8 @@ class SignUpController extends GetxController {
         Get.snackbar('Success', 'SignUp is Done');
         await Get.offAllNamed(AppRoute.login);
       } catch (e) {
+        stateRequest=StatusRequest.serverfailure;
+        update();
         print('SignUp error: $e');
         Get.defaultDialog(
           title: "Error",
@@ -39,6 +42,7 @@ class SignUpController extends GetxController {
 
   @override
   void onInit() {
+    formStateSign=GlobalKey();
     textEmail = TextEditingController();
     textName = TextEditingController();
     textPhone = TextEditingController();
@@ -48,7 +52,22 @@ class SignUpController extends GetxController {
     super.onInit();
   }
 
-  goToLoginPage() {
-    Get.toNamed(AppRoute.login);
+  @override
+  void dispose() {
+    textEmail!.dispose();
+    textName!.dispose();
+    textPhone!.dispose();
+    textPassword!.dispose();
+    textConfirmPassword!.dispose();
+
+    super.dispose();
   }
+
+
+
+  void goToLoginPage() {
+    Get.delete<SignUpController>(); // حذف الكونترولر من الذاكرة
+    Get.offAllNamed(AppRoute.login);
+  }
+
 }

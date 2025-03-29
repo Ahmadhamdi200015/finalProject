@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:iug/data/model/myOrders.dart';
+import 'package:gazaStore/data/model/myOrders.dart';
 
 import '../../core/function/staterequest.dart';
 import '../../core/services/service.dart';
@@ -20,6 +20,23 @@ class DetailsOrderController extends GetxController {
     InitData();
     getOrders();
     super.onInit();
+  }
+
+
+  String printTypeOrder(val) {
+    if (val.toString() == "0") {
+      return "delivery";
+    } else {
+      return "receive";
+    }
+  }
+
+  String printMethodOrder(val) {
+    if (val.toString() == "0") {
+      return "cash";
+    } else {
+      return "Card";
+    }
   }
 
   InitData() async {

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iug/applink.dart';
-import 'package:iug/controller/home/home_page_controller.dart';
-import 'package:iug/core/constant/app_color/app_color.dart';
-import 'package:iug/view/widget/home/custom_card_items.dart';
-import 'package:iug/view/widget/public/handlingdataview.dart';
+import 'package:gazaStore/applink.dart';
+import 'package:gazaStore/controller/home/home_page_controller.dart';
+import 'package:gazaStore/core/constant/app_color/app_color.dart';
+import 'package:gazaStore/view/widget/home/custom_card_items.dart';
+import 'package:gazaStore/view/widget/public/handlingdataview.dart';
 
 import '../../widget/home/custtomlistcategories.dart';
 
@@ -230,8 +230,8 @@ class HomePage extends StatelessWidget {
                     physics: const NeverScrollableScrollPhysics(),
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                            mainAxisSpacing: 10,
-                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 0,
+                            crossAxisSpacing: 5,
                             crossAxisCount: 2),
                     itemBuilder: (context, index) {
                       return CustomCardItems(itemsModel: controller.products[index]);

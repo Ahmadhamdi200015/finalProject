@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iug/controller/order/order_controller.dart';
+import 'package:gazaStore/controller/order/order_controller.dart';
 import 'package:jiffy/jiffy.dart';
 
 import '../../../core/constant/app_color/app_color.dart';
@@ -12,20 +12,7 @@ class OrderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     OrderController controller = Get.put(OrderController());
-   return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: Text(
-            "Orders",
-            style: Theme
-                .of(context)
-                .textTheme
-                .headlineLarge,
-          ),
-          centerTitle: true,
-        ),
-        body: Container(
+   return Container(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: GetBuilder<OrderController>(
             builder: (controller) =>
@@ -78,11 +65,7 @@ class OrderPage extends StatelessWidget {
                                   child:  Text(
                                       "Type payment : ${controller.printMethodOrder(controller.listOrders[index].paymentMethod)}"),
                                 ),
-                                Container(
-                                  margin: const EdgeInsets.only(bottom: 10),
-                                  child:  Text(
-                                      "Delivery price :  ${controller.listOrders[index].deliveryPrice}\$"),
-                                ),
+
                                 Container(
                                   margin: const EdgeInsets.only(bottom: 10),
                                   child:  Text(
@@ -98,7 +81,6 @@ class OrderPage extends StatelessWidget {
                       ),
                 ),
           ),
-        )
-    );
+        );
   }
 }

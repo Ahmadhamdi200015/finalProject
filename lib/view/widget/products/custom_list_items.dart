@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:iug/data/model/categorymodel.dart';
+import 'package:gazaStore/data/model/categorymodel.dart';
 
 import '../../../controller/items/items_controller.dart';
 import '../../../core/constant/app_color/app_color.dart';

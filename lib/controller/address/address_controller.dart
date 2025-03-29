@@ -31,6 +31,7 @@ class AddressController extends GetxController {
     statusRequest = StatusRequest.lodaing;
     update();
     try {
+
       var response = await addressData.addAddress(
         city!.text,
         street!.text,
@@ -57,5 +58,14 @@ class AddressController extends GetxController {
     lat = Get.arguments['lat'];
     long = Get.arguments['long'];
     super.onInit();
+  }
+
+  @override
+  void dispose() {
+    city!.dispose();
+    street!.dispose();
+    label!.dispose();
+
+    super.dispose();
   }
 }

@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iug/core/function/staterequest.dart';
-import 'package:iug/data/model/MyCart.dart';
+import 'package:gazaStore/core/function/staterequest.dart';
+import 'package:gazaStore/data/model/MyCart.dart';
 
 import '../../core/constant/route.dart';
 import '../../core/function/handlingdata.dart';
@@ -38,6 +38,9 @@ class CartController extends GetxController {
   }
 
   goToCheckOutPage() {
+    if(cartList.isEmpty){
+      return Get.snackbar('Warning!', 'Add Products To Your Cart');
+    }
     Get.toNamed(AppRoute.checkoutPage,
         arguments: {"orderPrice": totalPriceItems});
   }

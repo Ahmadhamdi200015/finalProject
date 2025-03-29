@@ -1,0 +1,2 @@
+C:/Users/msi GF66/AndroidStudioProjects/iug/android/app/.cxx/Debug/4h486v4q/x86/CMakeFiles/edit_cache.dir
+C:/Users/msi GF66/AndroidStudioProjects/iug/android/app/.cxx/Debug/4h486v4q/x86/CMakeFiles/rebuild_cache.dir
